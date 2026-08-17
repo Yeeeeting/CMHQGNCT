@@ -65,12 +65,11 @@ h1 .hl{background:linear-gradient(transparent 58%,var(--gold) 58%);padding:0 4px
 
 /* ============ NAV ============ */
 .navbar{position:sticky;top:0;z-index:50;background:rgba(255,253,250,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.navgroup{display:flex;align-items:center;gap:12px}
-.navgroup:first-child{padding-top:10px}
-.navgroup:last-child{padding-bottom:11px}
+.navgroup{display:flex;align-items:center;gap:12px;padding:11px 0 12px}
 .navlabel{flex:0 0 auto;font-size:12.5px;font-weight:800;color:var(--ink-3);letter-spacing:.1em;width:62px;text-align:right}
 .navrow{display:flex;gap:8px;overflow-x:auto;padding:5px 0;scrollbar-width:none;-webkit-overflow-scrolling:touch;flex:1}
 .navrow::-webkit-scrollbar{display:none}
+.navsep{flex:0 0 auto;width:1px;height:20px;background:var(--line);margin:0 3px}
 .navrow a{flex:0 0 auto;text-decoration:none;border:1.5px solid var(--line);background:#fff;border-radius:100px;padding:9px 17px;font-size:14.5px;font-weight:700;color:var(--ink-2);white-space:nowrap;transition:.16s}
 .navrow a:hover,.navrow a:focus-visible{border-color:var(--c1);color:var(--c1);transform:translateY(-1px)}
 .navrow a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
@@ -247,6 +246,7 @@ footer{padding:40px 0 clamp(48px,10vw,72px);font-size:14px;color:var(--ink-3);li
   .tl-body{grid-column:2}
   .navgroup{align-items:flex-start;gap:9px}
   .navlabel{width:auto;text-align:left;padding-top:13px}
+  .navsep{display:none}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto}}
 @media print{.navbar{display:none}header{background:#fff}section{break-inside:avoid;background:#fff!important}.myth .a{max-height:none!important;border-top-width:1px}}
@@ -256,7 +256,7 @@ footer{padding:40px 0 clamp(48px,10vw,72px);font-size:14px;color:var(--ink-3);li
 
 <header>
   <div class="wrap">
-    <div class="badge"><span class="dot"></span>醫策會審查備查通過　第 01 版</div>
+    <div class="badge"><span class="dot"></span>醫策會審查備查通過</div>
     <h1>學分制度改版了<br>一句話：<span class="hl">三個層級都要各自達標</span></h1>
     <p class="lede">過去只看總時數，湊滿就好；現在<b>通識、基礎技能、進階技能三個層級要分別修滿</b>，某一層級修再多，也補不了另一層級的不足。展延還要再切成三段，每段各自達標。</p>
 
@@ -284,20 +284,17 @@ footer{padding:40px 0 clamp(48px,10vw,72px);font-size:14px;color:var(--ink-3);li
 <nav class="navbar" aria-label="快速導覽">
   <div class="wrap">
     <div class="navgroup">
-      <span class="navlabel">我是</span>
+      <span class="navlabel">快速跳到</span>
       <div class="navrow">
         <a href="#teacher">臨床教師</a>
-        <a href="#head">單位主管</a>
-        <a href="#edu">單位教學負責人</a>
-        <a href="#dept">開辦課程單位</a>
-      </div>
-    </div>
-    <div class="navgroup">
-      <span class="navlabel">我想知道</span>
-      <div class="navrow">
         <a href="#calc">算我的學分</a>
         <a href="#myth">常見誤解</a>
         <a href="#map">分類對照</a>
+        <span class="navsep" aria-hidden="true"></span>
+        <a href="#head">單位主管</a>
+        <a href="#edu">單位教學負責人</a>
+        <a href="#dept">開辦課程單位</a>
+        <span class="navsep" aria-hidden="true"></span>
         <a href="#timeline">施行時程</a>
       </div>
     </div>
