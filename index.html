@@ -80,7 +80,7 @@ section{padding:clamp(40px,6.5vw,66px) 0;border-bottom:1px solid var(--line-soft
   --sec:var(--s-rule); --sec-bg:var(--s-rule-bg); --sec-ln:var(--s-rule-ln)}
 section#head,section#edu,section#dept{--sec:var(--s-role);--sec-bg:var(--s-role-bg);--sec-ln:var(--s-role-ln)}
 section#timeline,section#special{--sec:var(--s-adm);--sec-bg:var(--s-adm-bg);--sec-ln:var(--s-adm-ln)}
-section#why,section#check{--sec:var(--s-end);--sec-bg:var(--s-end-bg);--sec-ln:var(--s-end-ln)}
+section#check{--sec:var(--s-end);--sec-bg:var(--s-end-bg);--sec-ln:var(--s-end-ln)}
 section:nth-of-type(even){background:var(--bg-soft)}
 section#rules,section#special{background:var(--bg-warm)}
 .tagline{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:800;letter-spacing:.14em;color:var(--sec);margin-bottom:13px}
@@ -288,6 +288,8 @@ footer{padding:40px 0 clamp(48px,10vw,72px);font-size:14px;color:var(--ink-3);li
     <div class="navgroup">
       <span class="navlabel">快速跳到</span>
       <div class="navrow">
+        <a href="#why">為什麼要修</a>
+        <span class="navsep" aria-hidden="true"></span>
         <a href="#teacher">臨床教師</a>
         <a href="#calc">算我的學分</a>
         <a href="#myth">常見誤解</a>
@@ -302,6 +304,27 @@ footer{padding:40px 0 clamp(48px,10vw,72px);font-size:14px;color:var(--ink-3);li
     </div>
   </div>
 </nav>
+
+<section id="why">
+  <div class="wrap">
+    <div class="tagline"><span class="ic">◇</span>為什麼要修</div>
+    <h2>這次修訂的依據與理由</h2>
+    <p class="sub">不是本院自己想加嚴，而是配合上級主管機關的師資培育認證制度調整。</p>
+    <div class="grid">
+      <div class="bcard"><div class="no">1</div><h4>配合醫策會作業程序</h4>
+        <p>依醫策會「臨床醫事人員培訓計畫師資培育認證作業程序」辦理修訂，本院程序書須與之銜接，教師取得的資格才能被外部認可。</p></div>
+      <div class="bcard"><div class="no">2</div><h4>適用範圍須符合部頒要點</h4>
+        <p>適用對象調整為本院專任醫事人員，且須符合衛生福利部「臨床醫事人員培訓計畫申請作業要點」相關規範。</p></div>
+      <div class="bcard"><div class="no">3</div><h4>完成院內外審查程序</h4>
+        <p>本程序書由教師培育中心制定，經醫學教育委員會核可後施行，並已通過醫策會審查備查。</p></div>
+    </div>
+    <h3>為什麼展延要改成每年都達標？</h3>
+    <div class="quote">
+      程序書明訂，目的在於<b>確保臨床教師於效期內持續接受提升教學能力之訓練課程</b>。舊制只看三年總時數，可以前兩年完全不修、第三年一次補齊，這樣達不到「持續」精進的目的。改為每 12 個月各自達標後，教學能力的維持才會是連續的。
+      <span class="src">依「醫事全人照護臨床教師資格認證及展延管理程序書」第 5.2.5 點意旨</span>
+    </div>
+  </div>
+</section>
 
 <section id="teacher">
   <div class="wrap">
@@ -523,26 +546,7 @@ footer{padding:40px 0 clamp(48px,10vw,72px);font-size:14px;color:var(--ink-3);li
   </div>
 </section>
 
-<section id="why">
-  <div class="wrap">
-    <div class="tagline"><span class="ic">◇</span>為什麼要修</div>
-    <h2>這次修訂的依據與理由</h2>
-    <p class="sub">不是本院自己想加嚴，而是配合上級主管機關的師資培育認證制度調整。</p>
-    <div class="grid">
-      <div class="bcard"><div class="no">1</div><h4>配合醫策會作業程序</h4>
-        <p>依醫策會「臨床醫事人員培訓計畫師資培育認證作業程序」辦理修訂，本院程序書須與之銜接，教師取得的資格才能被外部認可。</p></div>
-      <div class="bcard"><div class="no">2</div><h4>適用範圍須符合部頒要點</h4>
-        <p>適用對象調整為本院專任醫事人員，且須符合衛生福利部「臨床醫事人員培訓計畫申請作業要點」相關規範。</p></div>
-      <div class="bcard"><div class="no">3</div><h4>完成院內外審查程序</h4>
-        <p>本程序書由教師培育中心制定，經醫學教育委員會核可後施行，並已通過醫策會審查備查。</p></div>
-    </div>
-    <h3>為什麼展延要改成每年都達標？</h3>
-    <div class="quote">
-      程序書明訂，目的在於<b>確保臨床教師於效期內持續接受提升教學能力之訓練課程</b>。舊制只看三年總時數，可以前兩年完全不修、第三年一次補齊，這樣達不到「持續」精進的目的。改為每 12 個月各自達標後，教學能力的維持才會是連續的。
-      <span class="src">依「醫事全人照護臨床教師資格認證及展延管理程序書」第 5.2.5 點意旨</span>
-    </div>
-  </div>
-</section>
+
 
 <section id="timeline">
   <div class="wrap">
