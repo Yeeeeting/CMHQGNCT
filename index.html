@@ -65,9 +65,9 @@ h1 .hl{background:linear-gradient(transparent 58%,var(--gold) 58%);padding:0 4px
 
 /* ============ NAV ============ */
 .navbar{position:sticky;top:0;z-index:50;background:rgba(255,253,250,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.navgroup{display:flex;align-items:center;gap:12px;padding:11px 0 12px}
-.navlabel{flex:0 0 auto;font-size:12.5px;font-weight:800;color:var(--ink-3);letter-spacing:.1em;width:62px;text-align:right}
-.navrow{display:flex;gap:8px;overflow-x:auto;padding:5px 0;scrollbar-width:none;-webkit-overflow-scrolling:touch;flex:1}
+.navgroup{display:flex;align-items:flex-start;gap:12px;padding:10px 0 11px}
+.navlabel{flex:0 0 auto;font-size:12.5px;font-weight:800;color:var(--ink-3);letter-spacing:.1em;width:62px;text-align:right;padding-top:14px}
+.navrow{display:flex;flex-wrap:wrap;gap:8px;padding:5px 0;flex:1;min-width:0}
 .navrow::-webkit-scrollbar{display:none}
 .navsep{flex:0 0 auto;width:1px;height:20px;background:var(--line);margin:0 3px}
 .navrow a{flex:0 0 auto;text-decoration:none;border:1.5px solid var(--line);background:#fff;border-radius:100px;padding:9px 17px;font-size:14.5px;font-weight:700;color:var(--ink-2);white-space:nowrap;transition:.16s}
@@ -244,8 +244,10 @@ footer{padding:40px 0 clamp(48px,10vw,72px);font-size:14px;color:var(--ink-3);li
   .tl-mark i{margin-top:4px}
   .tl-mark::before{top:17px;bottom:-16px}
   .tl-body{grid-column:2}
-  .navgroup{align-items:flex-start;gap:9px}
-  .navlabel{width:auto;text-align:left;padding-top:13px}
+  .navgroup{flex-direction:column;align-items:stretch;gap:2px;padding:9px 0 10px}
+  .navlabel{width:auto;text-align:left;padding-top:0}
+  .navrow{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .navrow::-webkit-scrollbar{display:none}
   .navsep{display:none}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto}}
@@ -295,7 +297,7 @@ footer{padding:40px 0 clamp(48px,10vw,72px);font-size:14px;color:var(--ink-3);li
         <a href="#edu">單位教學負責人</a>
         <a href="#dept">開辦課程單位</a>
         <span class="navsep" aria-hidden="true"></span>
-        <a href="#timeline">施行時程</a>
+        <a href="#timeline">系統時程</a>
       </div>
     </div>
   </div>
@@ -544,7 +546,7 @@ footer{padding:40px 0 clamp(48px,10vw,72px);font-size:14px;color:var(--ink-3);li
 
 <section id="timeline">
   <div class="wrap">
-    <div class="tagline"><span class="ic">◷</span>系統上線時程</div>
+    <div class="tagline"><span class="ic">◔</span>系統時程</div>
     <h2>接下來會怎麼進行</h2>
     <p class="sub">看完前面的規則，最後看一下時程。申請的實際操作方式會另外公告，現在先掌握時間點就好。</p>
     <div class="tl">
