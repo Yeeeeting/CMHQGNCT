@@ -233,12 +233,18 @@ footer{padding:clamp(34px,5vw,46px) 0 clamp(48px,10vw,72px);font-size:14.5px;col
 .fcard{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;height:100%}
 .fc-title{font-size:16.5px;font-weight:900;color:var(--c1);margin-bottom:15px}
 .fc-note{margin-top:16px;padding-top:13px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink-3);line-height:1.78}
-.ct-group{padding:13px 15px;border-radius:12px;margin-bottom:11px;background:var(--gray-bg);border:1.5px solid var(--gray-ln)}
+.ct-group{padding:13px 15px;border-radius:12px;margin-bottom:11px}
 .ct-group:last-of-type{margin-bottom:0}
+/* 兩個職類用同一個藍色的深淺差異區隔，不另外增加色相 */
+.ct-group.g-dr{background:var(--c1-bg);border:1.5px solid var(--c1-ln)}
+.ct-group.g-md{background:var(--gray-bg);border:1.5px solid var(--gray-ln)}
 .ct-head{margin-bottom:9px}
-.ct-badge{font-size:12.5px;font-weight:900;letter-spacing:.06em;padding:4px 12px;border-radius:100px;color:#fff;background:var(--ink-2)}
+.ct-badge{font-size:12.5px;font-weight:900;letter-spacing:.06em;padding:4px 12px;border-radius:100px;color:#fff}
+.ct-badge.dr{background:var(--c1)}
+.ct-badge.md{background:var(--ink-2)}
 .ct-item{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;padding:6px 0}
 .ct-item + .ct-item{border-top:1px dashed var(--gray-ln)}
+.g-dr .ct-item + .ct-item{border-top-color:var(--c1-ln)}
 .ct-name{font-size:16.5px;font-weight:900;color:var(--ink);letter-spacing:.04em}
 .ct-job{font-size:14px;color:var(--ink-3)}
 .ct-ext{font-size:14.5px;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums;margin-left:auto;white-space:nowrap}
@@ -632,8 +638,8 @@ footer{padding:clamp(34px,5vw,46px) 0 clamp(48px,10vw,72px);font-size:14.5px;col
       <div class="fcard">
         <div class="fc-title">有疑問請洽</div>
 
-        <div class="ct-group">
-          <div class="ct-head"><span class="ct-badge">醫師職類</span></div>
+        <div class="ct-group g-dr">
+          <div class="ct-head"><span class="ct-badge dr">醫師職類</span></div>
           <div class="ct-item">
             <span class="ct-name">高瑞穗</span>
             <span class="ct-job">教學行政管理員</span>
@@ -641,8 +647,8 @@ footer{padding:clamp(34px,5vw,46px) 0 clamp(48px,10vw,72px);font-size:14.5px;col
           </div>
         </div>
 
-        <div class="ct-group">
-          <div class="ct-head"><span class="ct-badge">醫事職類</span></div>
+        <div class="ct-group g-md">
+          <div class="ct-head"><span class="ct-badge md">醫事職類</span></div>
           <div class="ct-item">
             <span class="ct-name">洪渝蓁</span>
             <span class="ct-job">教學行政管理員</span>
