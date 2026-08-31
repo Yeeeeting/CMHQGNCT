@@ -182,6 +182,16 @@ table{width:100%;border-collapse:collapse;font-size:15px;background:#fff;min-wid
 th,td{border-bottom:1px solid var(--line-soft);padding:14px 15px;text-align:left;vertical-align:top}
 th{background:var(--bg-soft);font-weight:800;font-size:14px;color:var(--ink-2)}
 tr:last-child td{border-bottom:0}
+.reftab{min-width:660px;font-size:14.5px}
+.reftab td{padding:12px 14px;line-height:1.75}
+.reftab .lvcell{vertical-align:middle;text-align:center;background:var(--bg-soft)}
+.reftab .lvtag{display:inline-block;font-size:13px;font-weight:900;padding:5px 12px;border-radius:100px;border:1.5px solid;white-space:nowrap}
+.reftab .lvtag.v1{background:var(--c1-bg);border-color:var(--c1-ln);color:var(--c1-ink)}
+.reftab .lvtag.v2{background:var(--c2-bg);border-color:var(--c2-ln);color:var(--c2-ink)}
+.reftab .lvtag.v3{background:var(--c3-bg);border-color:var(--c3-ln);color:var(--c3-ink)}
+.reftab tr.lv1 td:nth-child(even){font-weight:700}
+.reftab td:nth-last-child(2){font-weight:700}
+.reftab .cond{display:block;font-size:13px;color:var(--alert-ink);background:var(--alert-bg);border:1px solid var(--alert-ln);border-radius:8px;padding:5px 10px;margin-bottom:7px;font-weight:800}
 
 .flow{display:grid;gap:11px}
 .flow-row{display:grid;grid-template-columns:1fr 40px 1.35fr;gap:10px;align-items:center}
@@ -566,6 +576,44 @@ footer{padding:clamp(34px,5vw,46px) 0 clamp(48px,10vw,72px);font-size:14.5px;col
       <li><b>一堂課只能給一類。</b>請選擇與課程主題最相符的那一類。</li>
       <li><b>非常歡迎多開基礎技能課程。</b>近三年半院內基礎技能只占全部課程時數的 8.7%，其中評估技巧與教材製作最少，而初次認證對基礎技能的需求最高——開這類課最能幫到同仁。</li>
     </ul>
+
+    <h3>十一個課程項目的參考範圍</h3>
+    <p class="sub" style="margin-bottom:20px">新舊分類的內容差蠻多的，送課前請先對照下表確認要標哪一項。本表依程序書附件 7.1、7.2 整理。</p>
+    <div class="scroll">
+      <table class="reftab">
+        <thead><tr><th style="width:96px">層級</th><th style="width:172px">課程項目</th><th>參考項目</th></tr></thead>
+        <tbody>
+          <tr class="lv1"><td rowspan="2" class="lvcell"><span class="lvtag v1">通識</span></td>
+            <td>六大核心能力課程</td>
+            <td>六大核心能力（病人照護、醫學知識、醫病溝通、制度下之臨床工作、專業素養、工作中學習成長）／臨床教師培育研習營／一般醫學基本能力培育（含感染控制、病歷寫作）／醫療品質／醫療團隊資源管理 TRM／病人安全</td></tr>
+          <tr class="lv1"><td>醫學倫理及法律課程</td>
+            <td>倫理議題（自主權、告知同意、隱私權、保密之倫理困境）／人體試驗倫理／醫療糾紛的預防與處理／醫學相關法律／性別議題</td></tr>
+
+          <tr class="lv2"><td rowspan="4" class="lvcell"><span class="lvtag v2">基礎技能</span></td>
+            <td>a. 課程設計</td>
+            <td>教案設計／課程結構／教學大綱撰寫／學習目標設定／CBME</td></tr>
+          <tr class="lv2"><td>b. 教學技巧</td>
+            <td>互動式教學／實作教學／多元教學</td></tr>
+          <tr class="lv2"><td>c. 評估技巧</td>
+            <td>OSCE／臨床能力評估</td></tr>
+          <tr class="lv2"><td>d. 教材製作</td>
+            <td>教學簡報與視覺化教材設計／線上教材製作</td></tr>
+
+          <tr class="lv3"><td rowspan="5" class="lvcell"><span class="lvtag v3">進階技能</span></td>
+            <td>a. 跨領域團隊合作照護教學</td>
+            <td><b class="cond">須至少涵蓋三個不同醫事職類</b>跨專業案例討論／跨領域團隊合作與回饋／IPE 跨專業教育／IPP 跨專業實務</td></tr>
+          <tr class="lv3"><td>b. 全人照護教學</td>
+            <td>生理／心理／社會／靈性／醫學人文／復原力</td></tr>
+          <tr class="lv3"><td>c. 溝通及輔導</td>
+            <td>醫病溝通／輔導與反思</td></tr>
+          <tr class="lv3"><td>d. 創新教學導入</td>
+            <td>數位教學工具應用／AI 輔助教學／翻轉教室／世界咖啡館</td></tr>
+          <tr class="lv3"><td>e. 教師教學經驗分享</td>
+            <td>教師經驗分享／同儕回饋交流</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">※ 參考項目是判斷歸類的依據，不是窮盡的清單。課程主題若不在上表之中，請以最相近的項目送件，教學部會協助確認。</p>
   </div>
 </section>
 
