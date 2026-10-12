@@ -205,6 +205,9 @@ tr.sum td{font-weight:700;background:var(--color-cream)!important}
 .mini-tl .pt{background:var(--color-white);border:1px solid var(--color-line);border-radius:var(--r-btn);padding:6px 12px;font-weight:500;font-variant-numeric:tabular-nums}
 .mini-tl .pt.b{border-color:var(--color-brand);color:var(--color-brand-dark)}
 .mini-tl .arr{color:var(--color-brand)}
+.mini-tl .pt small{font-size:13px;color:var(--color-muted);font-weight:400}
+.once{border:1.5px solid var(--emph)}
+.once h4{margin-bottom:10px}
 
 /* ===== 4. 銜接期 ===== */
 .or-grid{display:grid;grid-template-columns:minmax(0,1fr) 64px minmax(0,1fr);gap:8px;align-items:stretch}
@@ -464,7 +467,7 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
       <span class="eyebrow">臨床教師認證作業說明</span>
       <h1>臨床教師認證改版了</h1>
       <p class="subtitle">一句話：改成一年一審</p>
-      <p class="lead">您的臨床教師證書效期從三年改為<b>一年</b>，教師培育中心每年 <b>10 月</b>統一受理申請。您申請展延時，系統改看您<b>過去 12 個月</b>有沒有修滿 6 小時。118 年以前是銜接期，您的學分<b>符合舊制或新制其中一種，就能通過</b>。</p>
+      <p class="lead">您的臨床教師證書效期從三年改為<b>一年</b>，教師培育中心每年 <b>10 月</b>統一受理申請。您申請展延時，系統改看您<b>過去 12 個月</b>有沒有修滿 6 小時。118 年以前是銜接期，您舊制證書到期、換新制的那一次展延，學分<b>符合舊制或新制其中一種，就能通過</b>。</p>
       <p class="scope">適用全院臨床教師：醫師、牙醫師、中醫師及各職類醫事人員。</p>
     </div>
     <div class="plant-wrap" aria-hidden="true">
@@ -502,7 +505,7 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
     <h2 class="sec-head">先記住這三件事</h2>
     <div class="grid g3">
       <div class="card big-num"><span class="n">1</span><div><h4>證書改成一年一審</h4><p>您每年 10/1–10/31 送件，證書效期到當年 12/31。今年送件時間由教師培育中心另行通知。</p></div></div>
-      <div class="card big-num"><span class="n">2</span><div><h4>118 年以前從寬認定</h4><p>您申請展延時，學分「三年加起來夠」或「最近一年夠」，符合一種就通過。</p></div></div>
+      <div class="card big-num"><span class="n">2</span><div><h4>118 年以前從寬認定</h4><p>您舊制證書到期、換新制的那一次展延，學分「三年加起來夠」或「最近一年夠」，符合一種就通過。之後每年展延都看新制。</p></div></div>
       <div class="card big-num"><span class="n">3</span><div><h4>學分不夠有管道補</h4><p>您可以看影音、上教師培育中心加開的實體課，或用院外課程抵免。</p></div></div>
     </div>
     <h3 class="sub-head">您是哪一種情況？點一下直接看</h3>
@@ -599,7 +602,13 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
         <p>您在過去 12 個月修滿通識 1、基礎技能 1、進階技能 3，並主講科部內外教學 1 小時。</p>
         <p>證書 115/12/31 到期的老師，系統採計 115/1/1–115/12/31 的學分；116 年起，系統採計前一年 11/1 至當年 10/31 的學分，例如 116 年採計 115/11/1–116/10/31。</p></div>
     </div>
-    <div class="banner"><b>您符合任一種，教師培育中心都核發新制展延資格</b>您在 115 年底、116 年、117 年送展延，都適用這個從寬認定。通過後，您拿到的是新制一年效期，之後您每年 10 月再送一次。</div>
+    <div class="banner"><b>您符合任一種，教師培育中心都核發新制展延資格</b>您的舊制證書在 115 年底、116 年或 117 年到期，那一次展延適用這個從寬認定。通過後，您拿到的是新制一年效期，之後您每年 10 月再送一次。</div>
+    <div class="card once" style="margin-top:16px">
+      <h4 class="hic"><span class="ic-s" aria-hidden="true"><svg class="i"><use href="#i-clock"/></svg></span>從寬認定只用一次</h4>
+      <p>舊制累計（標準一）只能用在<b class="hl">您舊制證書到期、換成新制的那一次展延</b>。您展延通過、拿到新制一年效期後，之後每年 10 月送展延，教師培育中心一律看新制年度標準：過去 12 個月修滿通識 1、基礎技能 1、進階技能 3，並主講 1 小時。您之前多修的學分，不能留到下一年再用舊制累計。</p>
+      <p style="margin-top:8px">例如：您的證書 115/12/31 到期，今年用舊制 36 個月累計通過展延，拿到 116/1/1–116/12/31 的新制證書。您 116 年 10 月再送展延時，要符合新制年度標準，系統採計 115/11/1–116/10/31 的學分。</p>
+      <div class="mini-tl" aria-hidden="true"><span class="pt">115 年底展延<br><small>舊制或新制擇一</small></span><svg class="i arr"><use href="#i-arrow-right"/></svg><span class="pt b">116 年 10 月展延<br><small>只看新制</small></span><svg class="i arr"><use href="#i-arrow-right"/></svg><span class="pt b">之後每年 10 月<br><small>只看新制</small></span></div>
+    </div>
 
   </div>
 </section>
@@ -654,14 +663,14 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
   <div class="wrap">
     <div class="sec-tag"><span class="no">05</span>應修學分</div>
     <div class="res">
-      <div class="res-top"><div class="cat">展延認證｜115–117 年送件</div><h4>銜接期：兩種標準擇一</h4></div>
+      <div class="res-top"><div class="cat">展延認證｜舊制證書 115–117 年到期</div><h4>銜接期：兩種標準擇一</h4></div>
       <div class="res-body">
         <div><div class="blk-t">標準一｜舊制累計：36 個月內累計</div><div class="blk-sub">不必每年達標</div><div style="height:8px"></div><div class="hours"><div class="hb"><div class="v">3</div><div class="u">小時</div><div class="nm">通識</div></div><div class="hb"><div class="v">3</div><div class="u">小時</div><div class="nm">基礎技能</div></div><div class="hb"><div class="v">9</div><div class="u">小時</div><div class="nm">進階技能</div></div><div class="hb"><div class="v">3</div><div class="u">小時</div><div class="nm">主講教學</div></div></div></div>
         <div class="or-line">或</div>
         <div><div class="blk-t">標準二｜新制年度：過去 12 個月共 6 小時</div><div style="height:8px"></div><div class="hours"><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">通識</div></div><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">基礎技能</div></div><div class="hb"><div class="v">3</div><div class="u">小時</div><div class="nm">進階技能</div></div><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">主講教學</div></div></div></div>
         <div><div class="blk-t" style="margin-bottom:8px">標準二各送件年度的採計期間</div><div class="tbl-wrap cardify" style="margin-top:4px"><table class="tbl-card"><thead><tr><th>送件年度</th><th>採計期間</th><th>送件時間</th></tr></thead><tbody><tr><td data-l="送件年度"><b>115 年</b></td><td data-l="採計期間">115/1/1–115/12/31</td><td data-l="送件時間"><span class="send-note">證書 115/12/31 到期的老師：教師培育中心 11 月初通知送件，學分算到 115/12/31</span></td></tr><tr><td data-l="送件年度"><b>116 年</b></td><td data-l="採計期間">115/11/1–116/10/31</td><td data-l="送件時間">116 年 10/1–10/31 送件，10/31 結算</td></tr><tr><td data-l="送件年度"><b>117 年</b></td><td data-l="採計期間">116/11/1–117/10/31</td><td data-l="送件時間">117 年 10/1–10/31 送件，10/31 結算</td></tr></tbody></table></div></div>
         <div class="info">影音怎麼算：您今年看教師培育中心影音並通過測驗，視同現場學分；您寫心得（300 字以上）的學分每一類不超過 2/3，每一類至少 1 小時要現場取得。</div>
-        <p>您符合任一種就能通過，通過後教師培育中心核發新制一年效期，之後您每年 10 月再送。118 年起銜接期結束，教師培育中心只看標準二。</p>
+        <p>您符合任一種就能通過，通過後教師培育中心核發新制一年效期，之後您每年 10 月再送，一律看標準二。兩種標準擇一只適用您舊制證書到期的那一次展延。118 年起銜接期結束，教師培育中心只看標準二。</p>
         <div class="warn"><b>兩種標準不能混著算</b><br>例如您通識照舊制、進階照新制，這樣不算達標。</div>
       </div>
     </div>
@@ -707,10 +716,11 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
 <section id="myth" data-nav="常見誤解" data-short="常見誤解">
   <div class="wrap">
     <div class="sec-tag"><span class="no">06</span>常見誤解</div>
-    <div class="sec-head"><h2>這六句話，您中了幾句？</h2><p>請點一下看答案。這些都是老師最容易搞錯的地方。</p></div>
+    <div class="sec-head"><h2>這七句話，您中了幾句？</h2><p>請點一下看答案。這些都是老師最容易搞錯的地方。</p></div>
     <div class="grid g2" id="myths">
       <div class="card myth"><button aria-expanded="false"><span class="q">「新制一上路，我手上的證書就只剩一年了。」</span><span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></button><div class="a" hidden><p><span class="lead-in">不會。</span>您原本的效期照舊，您到期展延那一次通過後，教師培育中心才換發一年效期。</p></div></div>
-      <div class="card myth"><button aria-expanded="false"><span class="q">「今年送展延，每年都要修滿 6 小時才會過。」</span><span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></button><div class="a" hidden><p><span class="lead-in">118 年以前不一定。</span>銜接期內，您符合<b>舊制 36 個月累計</b>或<b>新制 12 個月 6 小時</b>其中一種就能通過。118 年起，教師培育中心才一律看新制。</p></div></div>
+      <div class="card myth"><button aria-expanded="false"><span class="q">「今年送展延，每年都要修滿 6 小時才會過。」</span><span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></button><div class="a" hidden><p><span class="lead-in">舊制證書到期換新制的那一次不一定。</span>銜接期內，您舊制證書到期的那一次展延，符合<b>舊制 36 個月累計</b>或<b>新制 12 個月 6 小時</b>其中一種就能通過。換成新制一年效期後，您每年展延都要符合新制。118 年起，教師培育中心一律看新制。</p></div></div>
+      <div class="card myth"><button aria-expanded="false"><span class="q">「我今年用舊制 36 個月累計通過展延，明年再送也可以照舊制算。」</span><span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></button><div class="a" hidden><p><span class="lead-in">不行。</span>舊制累計只能用在您舊制證書到期、換成新制的那一次展延。您通過後拿到新制一年效期，之後每年 10 月送展延，都要符合<b>新制年度標準</b>：過去 12 個月修滿通識 1、基礎技能 1、進階技能 3，並主講 1 小時。例如：您今年證書 115/12/31 到期並通過展延，116 年 10 月再送展延時，系統採計 115/11/1–116/10/31 的學分，您 114、115 年多修的學分不能再用舊制累計。</p></div></div>
       <div class="card myth"><button aria-expanded="false"><span class="q">「10 月太忙沒送，過幾個月再補送就好。」</span><span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></button><div class="a" hidden><p><span class="lead-in">不行。</span>您沒在申請期間提出展延，您的資格會在 <b>12 月 31 日失效</b>，之後您要重新申請首次認證。申請期間：116 年起是每年 10/1–10/31；今年由教師培育中心 11 月初另行通知。留職停薪、育嬰假、長期病假的老師另有辦法，見「<a href="#special">特殊情況</a>」。</p></div></div>
       <div class="card myth"><button aria-expanded="false"><span class="q">「基礎技能不夠，看影音補一補就好。」</span><span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></button><div class="a" hidden><p><span class="lead-in">要看是哪一種影音。</span>今年（115 年）不論展延或首次認證，您看教師培育中心開設的影音並<b>通過測驗，視同現場學分</b>，基礎技能也可以用。如果您是寫心得（300 字以上），每一類不超過 2/3，且每一類至少 1 小時要現場取得。118 年起依新制，您展延的基礎技能不能用影音補。</p></div></div>
       <div class="card myth"><button aria-expanded="false"><span class="q">「基礎技能修滿 6 小時就可以了吧？」</span><span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></button><div class="a" hidden><p><span class="lead-in">首次認證還要看子項。</span>您的基礎技能 6 小時必須至少涵蓋 <b>a.課程設計、b.教學技巧、c.評估技巧、d.教材製作</b> 其中<b>兩個不同子項</b>。您全部集中在同一個子項，系統會判定為未達標。（展延沒有這個限制。）</p></div></div>
@@ -866,7 +876,7 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
     <div class="card">
       <div class="chk-prog" id="chkProg">已確認 0/4</div>
       <div class="chk"><input type="checkbox" id="k1"><label for="k1">我知道自己的證書哪一年到期，那一年要在申請期間送件<small>116 年起是每年 10/1–10/31；今年由教師培育中心 11 月初通知。錯過申請期，資格會在 12/31 失效</small></label></div>
-      <div class="chk"><input type="checkbox" id="k2"><label for="k2">我知道 118 年以前，舊制累計或新制年度符合一種就能通過<small>118 年起，教師培育中心一律看新制：過去 12 個月 6 小時</small></label></div>
+      <div class="chk"><input type="checkbox" id="k2"><label for="k2">我知道舊制證書到期、換新制的那一次展延，舊制累計或新制年度符合一種就能通過<small>換成新制一年效期後，我每年 10 月送展延都看新制：過去 12 個月 6 小時</small></label></div>
       <div class="chk"><input type="checkbox" id="k3"><label for="k3">我知道新制的 6 小時要包含主講 1 小時，三個層級各自達標<small>我進階技能修再多，也補不了基礎技能的不足</small></label></div>
       <div class="chk"><input type="checkbox" id="k4"><label for="k4">（首次認證者）我的基礎技能已涵蓋至少兩個子項<small>我只修單一子項，系統會判定為未達標</small></label></div>
       <p class="chk-msg" id="chkMsg">還沒開始勾，先從第一項看起吧。</p>
