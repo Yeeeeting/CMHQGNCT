@@ -369,6 +369,17 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
 .drawer a.tc + a.ts{border-top:0}
 .drawer a .seen{width:8px;height:8px;border-radius:50%;background:var(--color-sand);flex:0 0 auto;margin-left:8px}
 .drawer a.on{background:var(--color-cream);color:var(--color-brand-dark);font-weight:700}
+.drawer button.tg{width:100%;display:flex;align-items:center;min-height:48px;padding:0 12px;border:0;border-bottom:1px solid var(--color-line);border-radius:var(--r-btn);background:none;text-align:left;cursor:pointer;color:var(--color-ink);font-weight:500}
+.drawer button.tg .tt{flex:1;font-weight:700}
+.drawer button.tg .tn{width:32px;flex:0 0 auto;font-variant-numeric:tabular-nums;color:var(--color-brand);font-weight:700;font-size:14px}
+.drawer button.tg.grp .tt{color:var(--color-brand);font-size:15px}
+.drawer button.tg .tcount{font-size:13px;color:var(--color-muted);margin-right:8px}
+.drawer button.tg .chev{transform:rotate(90deg);transition:transform .2s;color:var(--color-brand)}
+.drawer button.tg[aria-expanded="true"] .chev{transform:rotate(-90deg)}
+.drawer button.tg.on{background:var(--color-cream)}
+.drawer .tsub[hidden]{display:none}
+.drawer a.ts.grp-i{padding-left:12px;font-size:16px;color:var(--color-ink)}
+.drawer a.ts.grp-i .tt{font-weight:500}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .mode-sw{display:flex;gap:12px;align-items:flex-start;margin-top:16px;padding:14px 12px;border-radius:var(--r-btn);background:var(--color-white);border:1px solid var(--color-line);cursor:pointer}
 .mode-sw input{width:22px;height:22px;margin-top:2px;accent-color:var(--color-brand)}
@@ -924,20 +935,32 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
   const nav=$('#navlinks');nav.innerHTML=pages.map((p,i)=>`<a href="#${p.id}" data-i="${i}">${esc(p.short)}</a>`).join('');
   const navA=$$('#navlinks a');
   // 目錄
+  const tocOpen=new Set();
+  const noOf=p=>((p.sec.querySelector('.sec-tag .no')||{}).textContent||'');
   function drawToc(){
-    let h='',g='',ch='';
     const dot=p=>seen.includes(p.id)?'<span class="seen" title="已翻閱"><span class="sr">已翻閱</span></span>':'';
-    pages.forEach((p,i)=>{
-      if(p.group&&p.group!==g){g=p.group;h+=`<div class="toc-g">${esc(g)}</div>`;}
-      const no=(p.sec.querySelector('.sec-tag .no')||{}).textContent||'';
-      const multi=pages.filter(q=>((q.sec.querySelector('.sec-tag .no')||{}).textContent||'')===no).length>1;
-      const on=i===cur&&paged, cls=on?' on':'', ac=on?' aria-current="page"':'';
-      if(!multi){h+=`<a class="tc${cls}" href="#${p.id}"${ac}><span class="tn">${no}</span><span class="tt">${esc(p.title)}</span>${dot(p)}</a>`;return;}
-      const [cn,sn]=p.title.split('：');
-      if(no!==ch){ch=no;h+=`<a class="tc" href="#${p.id}"><span class="tn">${no}</span><span class="tt">${esc(cn)}</span></a>`;}
-      h+=`<a class="ts${cls}" href="#${p.id}"${ac}><span class="tt">${esc(sn||p.title)}</span>${dot(p)}</a>`;
+    const row=(p,i,cls,label,num)=>{const on=i===cur&&paged;return `<a class="${cls}${on?' on':''}" href="#${p.id}"${on?' aria-current="page"':''}>${num!=null?`<span class="tn">${num}</span>`:''}<span class="tt">${esc(label)}</span>${dot(p)}</a>`;};
+    // 先把頁面分成「區塊」：一般單頁章、多頁章（可展開）、單位角色群組（可展開）
+    const blocks=[];
+    pages.forEach((p,i)=>{const no=noOf(p),last=blocks[blocks.length-1];
+      if(p.group==='給單位主管與開課單位'||(last&&last.key==='roles'&&!p.group)){ if(last&&last.key==='roles'){last.items.push(i);} else blocks.push({key:'roles',kind:'group',title:'給單位主管與開課單位',items:[i]}); return;}
+      if(last&&last.key===no&&last.no===no){last.items.push(i);last.kind='chap';return;}
+      blocks.push({key:no,no,kind:'one',items:[i],group:p.group});});
+    let h='',g='';
+    blocks.forEach((bk,bi)=>{
+      const first=pages[bk.items[0]];
+      if(bk.kind!=='group'&&first.group&&first.group!==g){g=first.group;h+=`<div class="toc-g">${esc(g)}</div>`;}
+      if(bk.kind==='one'){h+=row(first,bk.items[0],'tc',first.title,bk.no);return;}
+      const hasCur=bk.items.includes(cur)&&paged;const open=tocOpen.has(bk.key)||(hasCur&&!tocOpen.has('x'+bk.key));
+      const head=bk.kind==='group'?`<span class="tt">${esc(bk.title)}</span><span class="tcount">${bk.items.length} 章</span>`:`<span class="tn">${bk.no}</span><span class="tt">${esc(first.title.split('：')[0])}</span><span class="tcount">${bk.items.length} 頁</span>`;
+      h+=`<button type="button" class="tc tg${bk.kind==='group'?' grp':''}${hasCur&&!open?' on':''}" data-k="${bk.key}" aria-expanded="${open}">${head}<svg class="i chev"><use href="#i-chev"/></svg></button>`;
+      h+=`<div class="tsub"${open?'':' hidden'}>`+bk.items.map(i=>bk.kind==='group'?row(pages[i],i,'ts grp-i',pages[i].title,noOf(pages[i])):row(pages[i],i,'ts',pages[i].title.split('：')[1]||pages[i].title)).join('')+'</div>';
+      if(bk.kind==='group')g='給單位主管與開課單位';
     });
     $('#drawerLinks').innerHTML=h;}
+  $('#drawerLinks').addEventListener('click',e=>{const t=e.target.closest('button.tg');if(!t)return;const k=t.dataset.k;
+    if(t.getAttribute('aria-expanded')==='true'){tocOpen.delete(k);tocOpen.add('x'+k);}else{tocOpen.add(k);tocOpen.delete('x'+k);}
+    const y=$('#drawer').scrollTop;drawToc();$('#drawer').scrollTop=y;const nb=$(`#drawerLinks button.tg[data-k="${k}"]`);if(nb)nb.focus();});
   const drawer=$('#drawer'),bg=$('#drawerBg'),tocBtn=$('#pToc');
   function setDrawer(o){if(o)drawToc();drawer.classList.toggle('open',o);bg.style.display=o?'block':'none';tocBtn.setAttribute('aria-expanded',String(o));if(o)$('#drawerClose').focus();}
   tocBtn.addEventListener('click',()=>setDrawer(true));$('#drawerClose').addEventListener('click',()=>setDrawer(false));bg.addEventListener('click',()=>setDrawer(false));
