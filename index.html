@@ -148,9 +148,11 @@ a.card:hover,button.card:hover{box-shadow:var(--shadow-h);transform:translateY(-
 @media (max-width:720px){.compare{grid-template-columns:1fr}.cmp-arrow{transform:rotate(90deg);height:32px}.hero .subtitle{font-size:22px;line-height:32px}}
 
 /* ===== 1. 30 秒 ===== */
-.big-num{display:flex;gap:16px;align-items:flex-start}
+.big-num{display:flex;gap:16px;align-items:center}
 .big-num .n{font-size:40px;line-height:1;font-weight:700;color:var(--color-brand);font-variant-numeric:tabular-nums}
 .big-num h4{margin-bottom:6px}
+.mini-list{margin:6px 0 0;padding-left:1.2em;display:grid;gap:2px}
+.mini-list li::marker{color:var(--color-brand)}
 .sit{display:flex;align-items:center;gap:16px;min-height:88px}
 .sit .t{font-size:18px;font-weight:700;line-height:1.5}
 .sit .d{font-size:15px;color:var(--color-muted);margin-top:2px}
@@ -381,6 +383,7 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
 .drawer button.tg[aria-expanded="true"] .chev{transform:rotate(-90deg)}
 .drawer button.tg.on{background:var(--color-cream)}
 .drawer .tsub[hidden]{display:none}
+.drawer .toc-sub{font-size:13px;font-weight:700;color:var(--color-brand);letter-spacing:.04em;padding:10px 12px 2px 44px}
 .drawer a.ts.grp-i{padding-left:12px;font-size:16px;color:var(--color-ink)}
 .drawer a.ts.grp-i .tt{font-weight:500}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -400,6 +403,35 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
   .drawer.open{transform:none}
 }
 @media print{body{padding-top:0}}
+
+/* 身分 */
+body[data-role="ms"] .v-md,body[data-role="ms"] .v-att,body[data-role="ms"] .v-res,
+body[data-role="att"] .v-ms,body[data-role="att"] .v-res,
+body[data-role="res"] .v-ms,body[data-role="res"] .v-att,body[data-role="res"] .v-msatt{display:none!important}
+.role-out{display:none!important}
+.role-pick{display:inline-flex;flex-wrap:wrap;gap:4px;padding:4px;background:var(--color-cream);border-radius:12px}
+.role-pick button{min-height:44px;padding:0 18px;border:0;border-radius:var(--r-btn);background:transparent;color:var(--color-muted);font-weight:500;cursor:pointer}
+.role-pick button[aria-checked="true"]{background:var(--color-white);color:var(--color-ink);font-weight:700;box-shadow:var(--shadow)}
+.pick-hero{margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.pick-hero p{font-weight:700}
+.role-pick.in-sec{margin-bottom:20px}
+.pick-drawer{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:4px 12px 12px;border-bottom:1px solid var(--color-line);margin-bottom:4px}
+.pick-drawer>span{font-size:13px;font-weight:700;color:var(--color-brand)}
+@media print{.role-pick,.pick-hero,.pick-drawer{display:none!important}}
+
+/* 短字放同一行 */
+.std .hd{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-bottom:12px}
+.std .hd .k,.std .hd h4,.std .hd .pill{margin:0}
+@media (min-width:721px){.res-top .cat{display:inline-block;margin-right:10px;vertical-align:2px}.res-top h4{display:inline;margin:0}}
+.blk-t .blk-sub{display:inline-block;max-width:100%;margin-left:8px;font-weight:400}
+.hb .v,.hb .u{display:inline}
+.hb .u{margin-left:3px}
+.tl-c .w{display:inline-block;margin-right:10px}
+.tl-c h4{display:inline}
+.tl-c p{margin-top:4px}
+.linkbtn{background:none;border:0;padding:0;font:inherit;color:var(--color-brand);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.linkbtn:hover{color:var(--color-brand-dark)}
+.dl-msg{font-size:14px;color:var(--color-muted)}
 /* 動態 */
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 
@@ -417,7 +449,7 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
 </style>
 </head>
 <body>
-<script>try{if(localStorage.getItem('ctc_mode')!=='full')document.body.classList.add('paged')}catch(e){document.body.classList.add('paged')}</script>
+<script>document.body.dataset.role='ms';try{var r=localStorage.getItem('ctc_role');if(r==='att'||r==='res')document.body.dataset.role=r;if(localStorage.getItem('ctc_mode')!=='full')document.body.classList.add('paged')}catch(e){document.body.classList.add('paged')}</script>
 
 <!-- 圖示（Lucide 線條） -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -454,7 +486,7 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
 
 <nav class="topnav" aria-label="章節導覽">
   <div class="wrap" id="navlinks">
-    <a href="#start">30 秒看懂</a><a href="#why">為什麼要修</a><a href="#teacher">改了什麼</a><a href="#bridge">銜接期</a><a href="#calc">應修學分</a><a href="#myth">常見誤解</a><a href="#map">分類對照</a><a href="#rules">認列方式</a><a href="#timeline">年度時程</a><a href="#head">單位主管</a><a href="#edu">單位教學負責人</a><a href="#dept">開辦課程單位</a><a href="#special">特殊情況</a><a href="#check">自我檢核</a>
+    <a href="#start">先看重點</a><a href="#why">為什麼要修</a><a href="#teacher">改了什麼</a><a href="#bridge">銜接期</a><a href="#calc">應修學分</a><a href="#myth">常見誤解</a><a href="#map">分類對照</a><a href="#rules">認列方式</a><a href="#timeline">年度時程</a><a href="#head">單位主管</a><a href="#edu">單位教學負責人</a><a href="#dept">開辦課程單位</a><a href="#special">特殊情況</a><a href="#check">自我檢核</a>
   </div>
 </nav>
 
@@ -467,7 +499,7 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
       <span class="eyebrow">臨床教師認證作業說明</span>
       <h1>臨床教師認證改版了</h1>
       <p class="subtitle">一句話：改成一年一審</p>
-      <p class="lead">您的臨床教師證書效期從三年改為<b>一年</b>，教師培育中心每年 <b>10 月</b>統一受理申請。您申請展延時，系統改看您<b>過去 12 個月</b>有沒有修滿 6 小時。118 年以前是銜接期，您舊制證書到期、換新制的那一次展延，學分<b>符合舊制或新制其中一種，就能通過</b>。</p>
+      <p class="lead">您的臨床教師證書效期從三年改為<b>一年</b>，教師培育中心每年 <b>10 月</b>統一受理申請。您申請展延時，系統改看您<b>過去 12 個月</b>有沒有修滿<span class="v-ms"> 6 小時</span><span class="v-att">通識 1、基礎 1、進階 3</span><span class="v-res">通識 1、基礎 1、進階 2</span>。您舊制證書在 118/7/31 以前到期，換新制的那一次展延是銜接期，學分<b>符合舊制或新制其中一種，就能通過</b>。</p>
       <p class="scope">適用全院臨床教師：醫師、牙醫師、中醫師及各職類醫事人員。</p>
     </div>
     <div class="plant-wrap" aria-hidden="true">
@@ -484,36 +516,36 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
   <div class="wrap">
     <div class="compare">
       <div class="cmp-old">
-        <div class="cmp-label">舊制</div>
-        <div class="chips"><span class="chip old">效期 3 年</span><span class="chip old">7 月、12 月兩梯</span><span class="chip old">36 個月累計</span></div>
-        <p>您的證書三年換一次，展延時看您三年內累計的學分，您在證書到期那一梯送件。</p>
+        <div class="cmp-label">舊制展延</div>
+        <div class="chips"><span class="chip old">效期 3 年</span><span class="chip old">7 月、12 月兩梯</span><span class="chip old v-ms">36 個月累計</span><span class="chip old v-md">36 個月，每 12 個月達標</span></div>
+        <p>您的證書三年換一次，展延時看您<span class="v-ms">三年內累計的學分</span><span class="v-md">36 個月內每 12 個月是否都達標</span>，您在證書到期那一梯送件。</p>
       </div>
       <div class="cmp-arrow" aria-hidden="true"><svg class="i" style="width:28px;height:28px"><use href="#i-arrow-right"/></svg></div>
       <div class="cmp-new">
-        <div class="cmp-label">新制</div>
-        <div class="chips"><span class="chip new">通識 1</span><span class="chip new">基礎技能 1</span><span class="chip new">進階技能 3</span><span class="chip new">主講 1</span></div>
-        <p>您的證書一年一換，您每年 10 月送件，系統看您過去 12 個月是否修滿這 6 小時。</p>
+        <div class="cmp-label">新制展延</div>
+        <div class="chips v-ms"><span class="chip new">通識 1</span><span class="chip new">基礎技能 1</span><span class="chip new">進階技能 3</span><span class="chip new">主講科部內外教學 1</span></div><div class="chips v-att"><span class="chip new">通識 1</span><span class="chip new">基礎技能 1</span><span class="chip new">進階技能 3</span><span class="chip new">主講科部內外教學 1</span></div><div class="chips v-res"><span class="chip new">通識 1</span><span class="chip new">基礎技能 1</span><span class="chip new">進階技能 2</span><span class="chip new">主講科部內外教學 1</span></div>
+        <p>您展延後的證書改成一年一換，您每年 10 月送件，系統看您過去 12 個月是否修滿<span class="v-msatt">這 6 小時</span><span class="v-res">這 5 小時</span>。</p>
       </div>
     </div>
   </div>
 </header>
 
-<!-- 1. 30 秒看懂 -->
-<section id="start" data-group="給所有臨床教師" data-nav="30 秒看懂" data-short="30 秒看懂">
+<!-- 1. 先看重點 -->
+<section id="start" data-group="給所有臨床教師" data-nav="先看重點" data-short="先看重點">
   <div class="wrap">
-    <div class="sec-tag"><span class="no">01</span>30 秒看懂</div>
+    <div class="sec-tag"><span class="no">01</span>先看重點</div>
     <h2 class="sec-head">先記住這三件事</h2>
     <div class="grid g3">
       <div class="card big-num"><span class="n">1</span><div><h4>證書改成一年一審</h4><p>您每年 10/1–10/31 送件，證書效期到當年 12/31。今年送件時間由教師培育中心另行通知。</p></div></div>
-      <div class="card big-num"><span class="n">2</span><div><h4>118 年以前從寬認定</h4><p>您舊制證書到期、換新制的那一次展延，學分「三年加起來夠」或「最近一年夠」，符合一種就通過。之後每年展延都看新制。</p></div></div>
-      <div class="card big-num"><span class="n">3</span><div><h4>學分不夠有管道補</h4><p>您可以看影音、上教師培育中心加開的實體課，或用院外課程抵免。</p></div></div>
+      <div class="card big-num"><span class="n">2</span><div><h4>118/7/31 以前到期從寬認定</h4><p>您舊制證書到期、換新制的那一次展延，學分「三年加起來夠」或「最近一年夠」，符合一種就通過。之後每年展延都看新制。</p></div></div>
+      <div class="card big-num"><span class="n">3</span><div><h4>學分不夠有管道補</h4><p>今年看指定影音並通過測驗，<b class="hl">視同現場學分</b><span class="v-md">（醫師是否適用另行公告）</span>；您也可以寫影音心得、上加開的實體課、用院外課程抵免，或上單位自行開的課。<a class="link-arrow" href="#ways">看五種方式 →</a></p></div></div>
     </div>
     <h3 class="sub-head">您是哪一種情況？點一下直接看</h3>
     <div class="grid sit-grid">
       <a class="card sit" href="#bridge"><div><div class="t">我的證書今年底到期</div><div class="d">教師培育中心 11 月初會通知您送件，看銜接期怎麼認定</div><span class="go">看銜接期 →</span></div><svg class="i arr"><use href="#i-chev"/></svg></a>
       <a class="card sit" href="#mid"><div><div class="t">我的證書是 7 月底到期</div><div class="d">教師培育中心會把您的效期延到同年 12/31</div><span class="go">看說明 →</span></div><svg class="i arr"><use href="#i-chev"/></svg></a>
       <a class="card sit" href="#notyet"><div><div class="t">我的證書還沒到期</div><div class="d">您的效期照舊，到期展延那次才換新制</div><span class="go">看說明 →</span></div><svg class="i arr"><use href="#i-chev"/></svg></a>
-      <a class="card sit" href="#calc"><div><div class="t">我想申請首次認證</div><div class="d">您要在 24 個月內修滿 12 小時，基礎技能至少兩項</div><span class="go">看應修學分 →</span></div><svg class="i arr"><use href="#i-chev"/></svg></a>
+      <a class="card sit" href="#calc"><div><div class="t">我想申請首次認證</div><div class="d"><span class="v-ms">您要在 24 個月內修滿 12 小時，基礎技能至少兩項</span><span class="v-att">您要在 24 個月內修滿 16 小時（含主講科部內外教學 4 小時），基礎技能至少兩項</span><span class="v-res">R1–R2 要在 24 個月內修滿 10 小時，基礎技能至少兩項</span></div><span class="go">看應修學分 →</span></div><svg class="i arr"><use href="#i-chev"/></svg></a>
       <a class="card sit wide" href="#head"><div><div class="t">我是主管／教學負責人／開課單位</div><div class="d">主管初審時程、負責人提醒同仁、開課單位課程命名</div><span class="go">看各角色重點 →</span></div><svg class="i arr"><use href="#i-chev"/></svg></a>
     </div>
     <p class="muted" style="margin-top:24px">想知道教師培育中心為什麼要改？請看下一節「<a href="#why">為什麼要修</a>」，展開可以看完整理由與依據。</p>
@@ -543,7 +575,7 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
           <div class="card-cream reason" style="grid-column:1/-1"><h4 class="hic"><span class="ic-s" aria-hidden="true"><svg class="i"><use href="#i-checks"/></svg></span>趁這次把規則統一</h4><p>以前本院分年中、年底兩梯，證書效期也有兩種。教師培育中心這次統一成每年 10 月送件、年底到期，全院依同一套時程辦理。</p></div>
         </div>
         <h3 class="sub-head">新制每一層是怎麼來的？</h3>
-        <p class="prose" style="margin-bottom:16px">本院的標準是三種規範疊起來的。基礎技能加進階技能的時數，剛好等於醫策會的要求，另外再加上教學醫院評鑑要的通識，以及本院 CFD 要求的主講時數。</p>
+        <p class="prose" style="margin-bottom:16px">本院的標準是三種規範疊起來的。基礎技能加進階技能的時數，剛好等於醫策會的要求，另外再加上教學醫院評鑑要的通識，以及本院 CFD 要求的主講科部內外教學時數。</p>
         <div class="tbl-wrap cardify">
           <table class="tbl-card">
             <thead><tr><th>課程層級</th><th>依據</th><th class="num">本院首次<br>（24 個月）</th><th class="num">本院展延<br>（每 12 個月）</th><th>醫策會最低要求</th></tr></thead>
@@ -551,7 +583,7 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
               <tr><td data-l="課程層級"><span class="chip">通識</span></td><td data-l="依據">教學醫院評鑑規範</td><td class="num" data-l="本院首次（24 個月）">2</td><td class="num" data-l="本院展延（每 12 個月）">1</td><td data-l="醫策會最低要求">不列入計算</td></tr>
               <tr><td data-l="課程層級"><span class="chip">基礎技能</span></td><td data-l="依據">醫策會規範</td><td class="num" data-l="本院首次（24 個月）">6<br>至少兩項</td><td class="num" data-l="本院展延（每 12 個月）">1</td><td data-l="醫策會最低要求">首次必修：至少兩項、共 4 小時<br>展延選修</td></tr>
               <tr><td data-l="課程層級"><span class="chip">進階技能</span></td><td data-l="依據">醫策會規範</td><td class="num" data-l="本院首次（24 個月）">4</td><td class="num" data-l="本院展延（每 12 個月）">3</td><td data-l="醫策會最低要求">首次選修<br>展延必修：每年至少 2 小時</td></tr>
-              <tr><td data-l="課程層級"><span class="chip">主講教學</span></td><td data-l="依據">本院 CFD 規範</td><td class="num" data-l="本院首次（24 個月）">—</td><td class="num" data-l="本院展延（每 12 個月）">1</td><td data-l="醫策會最低要求">—</td></tr>
+              <tr><td data-l="課程層級"><span class="chip">主講科部內外教學</span></td><td data-l="依據">本院 CFD 規範</td><td class="num" data-l="本院首次（24 個月）">—</td><td class="num" data-l="本院展延（每 12 個月）">1</td><td data-l="醫策會最低要求">—</td></tr>
               <tr class="sum"><td data-l="課程層級">基礎＋進階</td><td data-l="依據"></td><td class="num" data-l="本院首次（24 個月）">10</td><td class="num" data-l="本院展延（每 12 個月）">4</td><td data-l="醫策會最低要求">首次 2 年 10 小時<br>展延每年 4 小時</td></tr>
             </tbody>
           </table>
@@ -575,7 +607,7 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
     <div class="sec-head"><h2>三個最主要的改變</h2><p>其他細節您可以慢慢看，這三件事先弄懂就好。</p></div>
     <div class="grid g3">
       <div class="card chg"><h4 class="hic"><span class="ic-s" aria-hidden="true"><svg class="i"><use href="#i-cal"/></svg></span>效期與送件</h4><div class="pair"><div class="o">效期 3 年，7 月、12 月兩梯</div><svg class="i down" aria-hidden="true"><use href="#i-arrow-right"/></svg><div class="n">效期 1 年，每年 10 月送件</div></div><p>您的證書效期為核發當年 1/1 到 12/31。您每年 10/1–10/31 申請，系統採計您前一年 11/1 至當年 10/31 的學分。今年例外：證書 115/12/31 到期要展延的老師，以及今年要申請首次認證的老師，教師培育中心會在 11 月初通知送件，學分算到 115/12/31。</p></div>
-      <div class="card chg"><h4 class="hic"><span class="ic-s" aria-hidden="true"><svg class="i"><use href="#i-clock"/></svg></span>展延時數</h4><div class="pair"><div class="o">36 個月累計，主講 3 小時另計</div><svg class="i down" aria-hidden="true"><use href="#i-arrow-right"/></svg><div class="n">回溯 12 個月共 6 小時，含主講 1 小時</div></div><p>您每 12 個月要修滿通識 1、基礎技能 1、進階技能 3，並主講科部內外教學活動 1 小時。首次認證維持 24 個月 12 小時不變。</p></div>
+      <div class="card chg"><h4 class="hic"><span class="ic-s" aria-hidden="true"><svg class="i"><use href="#i-clock"/></svg></span>展延時數</h4><div class="v-ms"><div class="pair"><div class="o">36 個月累計，主講科部內外教學 3 小時另計</div><svg class="i down" aria-hidden="true"><use href="#i-arrow-right"/></svg><div class="n">回溯 12 個月共 6 小時，含主講科部內外教學 1 小時</div></div><p>您每 12 個月要修滿通識 1、基礎技能 1、進階技能 3，並主講科部內外教學活動 1 小時。首次認證維持 24 個月 12 小時不變。</p></div><div class="v-att"><div class="pair"><div class="o">36 個月內每 12 個月達標，主講科部內外教學 5 小時另計</div><svg class="i down" aria-hidden="true"><use href="#i-arrow-right"/></svg><div class="n">回溯 12 個月共 6 小時，含主講科部內外教學 1 小時</div></div><p>您每 12 個月要修滿通識 1、基礎技能 1、進階技能 3，並主講科部內外教學活動 1 小時。首次認證是 24 個月 16 小時（含主講科部內外教學 4 小時）。</p></div><div class="v-res"><div class="pair"><div class="o">36 個月內每 12 個月達標，主講科部內外教學 3 小時另計</div><svg class="i down" aria-hidden="true"><use href="#i-arrow-right"/></svg><div class="n">回溯 12 個月共 5 小時，含主講科部內外教學 1 小時</div></div><p>R3 以上每 12 個月要修滿通識 1、基礎技能 1、進階技能 2，並主講科部內外教學活動 1 小時。R1–R2 認證是 24 個月 10 小時。</p></div></div>
       <div class="card chg"><h4 class="hic"><span class="ic-s" aria-hidden="true"><svg class="i"><use href="#i-layers"/></svg></span>課程分類</h4><div class="pair"><div class="o">A／B／C／D／E 五類</div><svg class="i down" aria-hidden="true"><use href="#i-arrow-right"/></svg><div class="n">通識、基礎技能、進階技能 三層級</div></div><p>您過去上過的課，教師培育中心已協助轉換為新學分。您的三個層級要各自達標，不能互相抵充。<a class="link-arrow" href="#map">看轉換流向 →</a></p></div>
     </div>
     <div class="grid g2" style="margin-top:24px">
@@ -592,20 +624,20 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
 <section id="bridge" data-nav="銜接期：兩種標準" data-short="兩種標準">
   <div class="wrap">
     <div class="sec-tag"><span class="no">04</span>銜接期</div>
-    <div class="sec-head"><h2>118 年以前，兩種標準符合一種就過</h2><p class="prose">考量老師們之前是照三年累計在修課，教師培育中心在正式施行前審查展延時，採新舊制並行、從寬認定。</p></div>
+    <div class="sec-head"><h2>證書 118/7/31 以前到期，展延時兩種標準符合一種就過</h2><p class="prose">考量老師們之前是照三年累計在修課，教師培育中心在正式施行前審查展延時，採新舊制並行、從寬認定。</p></div>
     <div class="or-grid">
-      <div class="card std"><div class="k">標準一｜舊制累計</div><h4>三年加起來夠</h4><span class="pill">36 個月內累計達標</span>
-        <p>您在 36 個月內累計修滿通識 3、基礎技能 3、進階技能 9，另主講科部內外教學 3 小時。三年合起來算，您不必每年都達標。</p>
-        <p>您用心得（300 字以上）取得的學分，每一類不超過 2/3，每一類至少 1 小時要現場取得（您今年看影音通過測驗，視同現場）。</p></div>
+      <div class="card std"><div class="hd"><div class="k">標準一｜舊制累計</div><h4><span class="v-ms">三年加起來夠</span><span class="v-att">依舊制 36 個月規定</span><span class="v-res">依舊制 36 個月規定</span></h4><span class="pill"><span class="v-ms">36 個月內累計達標</span></div><span class="v-att">36 個月內每 12 個月達標</span><span class="v-res">36 個月內每 12 個月達標</span></span>
+        <p><span class="v-ms">您在 36 個月內累計修滿通識 3、基礎技能 3、進階技能 9，另主講科部內外教學 3 小時。三年合起來算，您不必每年都達標。</span><span class="v-att">您在 36 個月內，每 12 個月都修滿通識 1、基礎技能 1、進階技能 3，另在 36 個月內主講科部內外教學 5 小時。</span><span class="v-res">您在 36 個月內，每 12 個月都修滿通識 1、基礎技能 1、進階技能 2，另在 36 個月內主講科部內外教學 3 小時。</span></p>
+        <p><span class="v-ms">您用心得（300 字以上）取得的學分，每一類不超過 2/3，每一類至少 1 小時要現場取得（您今年看影音通過測驗，視同現場）。</span><span class="v-att">您的影音學分每 12 個月通識最多 1 小時、進階技能最多 2 小時，基礎技能不可用影音。</span><span class="v-res">您的影音學分每類最多 2 小時。</span></p></div>
       <div class="or" aria-hidden="true">或</div>
-      <div class="card std"><div class="k">標準二｜新制年度</div><h4>最近一年夠</h4><span class="pill">過去 12 個月修滿 6 小時</span>
-        <p>您在過去 12 個月修滿通識 1、基礎技能 1、進階技能 3，並主講科部內外教學 1 小時。</p>
+      <div class="card std"><div class="hd"><div class="k">標準二｜新制年度</div><h4>最近一年夠</h4><span class="pill"><span class="v-ms">過去 12 個月修滿 6 小時</span></div><span class="v-att">過去 12 個月修滿 6 小時</span><span class="v-res">過去 12 個月修滿 5 小時</span></span>
+        <p><span class="v-ms">您在過去 12 個月修滿通識 1、基礎技能 1、進階技能 3，並主講科部內外教學 1 小時。</span><span class="v-att">您在過去 12 個月修滿通識 1、基礎技能 1、進階技能 3，並主講科部內外教學 1 小時。</span><span class="v-res">您在過去 12 個月修滿通識 1、基礎技能 1、進階技能 2，並主講科部內外教學 1 小時。</span></p>
         <p>證書 115/12/31 到期的老師，系統採計 115/1/1–115/12/31 的學分；116 年起，系統採計前一年 11/1 至當年 10/31 的學分，例如 116 年採計 115/11/1–116/10/31。</p></div>
     </div>
-    <div class="banner"><b>您符合任一種，教師培育中心都核發新制展延資格</b>您的舊制證書在 115 年底、116 年或 117 年到期，那一次展延適用這個從寬認定。通過後，您拿到的是新制一年效期，之後您每年 10 月再送一次。</div>
+    <div class="banner"><b>您符合任一種，教師培育中心都核發新制展延資格</b>您的舊制證書在 115/12/31 到 118/7/31 之間到期，那一次展延適用這個從寬認定。通過後，您拿到的是新制一年效期，之後您每年 10 月再送一次。</div>
     <div class="card once" style="margin-top:16px">
       <h4 class="hic"><span class="ic-s" aria-hidden="true"><svg class="i"><use href="#i-clock"/></svg></span>從寬認定只用一次</h4>
-      <p>舊制累計（標準一）只能用在<b class="hl">您舊制證書到期、換成新制的那一次展延</b>。您展延通過、拿到新制一年效期後，之後每年 10 月送展延，教師培育中心一律看新制年度標準：過去 12 個月修滿通識 1、基礎技能 1、進階技能 3，並主講 1 小時。您之前多修的學分，不能留到下一年再用舊制累計。</p>
+      <p>舊制累計（標準一）只能用在<b class="hl">您舊制證書到期、換成新制的那一次展延</b>。您展延通過、拿到新制一年效期後，之後每年 10 月送展延，教師培育中心一律看新制年度標準：過去 12 個月修滿<span class="v-ms">通識 1、基礎技能 1、進階技能 3，並主講科部內外教學 1 小時</span><span class="v-att">通識 1、基礎技能 1、進階技能 3，並主講科部內外教學 1 小時</span><span class="v-res">通識 1、基礎技能 1、進階技能 2，並主講科部內外教學 1 小時</span>。您之前多修的學分，不能留到下一年再用舊制累計。</p>
       <p style="margin-top:8px">例如：您的證書 115/12/31 到期，今年用舊制 36 個月累計通過展延，拿到 116/1/1–116/12/31 的新制證書。您 116 年 10 月再送展延時，要符合新制年度標準，系統採計 115/11/1–116/10/31 的學分。</p>
       <div class="mini-tl" aria-hidden="true"><span class="pt">115 年底展延<br><small>舊制或新制擇一</small></span><svg class="i arr"><use href="#i-arrow-right"/></svg><span class="pt b">116 年 10 月展延<br><small>只看新制</small></span><svg class="i arr"><use href="#i-arrow-right"/></svg><span class="pt b">之後每年 10 月<br><small>只看新制</small></span></div>
     </div>
@@ -620,8 +652,8 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
     <h3 class="sub-head" style="margin-top:0">年底要送件，學分還不夠怎麼辦？</h3>
     <p class="prose" style="margin-bottom:24px">為了今年底要送展延或首次認證的老師，教師培育中心準備了下面五種取得學分的方式。</p>
     <div class="ways">
-      <div class="note way"><h4 class="hic"><span class="ic-s" aria-hidden="true"><svg class="i"><use href="#i-play-c"/></svg></span><span><span class="tag-year">限今年（115 年）</span> 看影音、通過測驗。</span></h4>
-        <p>今年不論展延或首次認證，您看完教師培育中心開設的影音課程並通過測驗，<b class="hl">視同取得現場學分</b>，不受影音採計上限限制。您看完影片後，請到對應的測驗連結作答。</p>
+      <div class="note way"><h4 class="hic"><span class="ic-s" aria-hidden="true"><svg class="i"><use href="#i-play-c"/></svg></span><span><span class="tag-year">限今年（115 年）</span> 看影音、通過測驗</span></h4>
+        <p>今年不論展延或首次認證，您看完教師培育中心開設的影音課程並通過測驗，<b class="hl">視同取得現場學分</b>，不受影音採計上限限制。您看完影片後，請到對應的測驗連結作答。<span class="v-md">醫師是否適用，教師培育中心另行公告。</span></p>
         <p class="vid-when"><svg class="i"><use href="#i-cal"/></svg><span>下列三支影音只在 <b class="hl">10 月</b>開放，11 月、12 月教師培育中心會再開放其他影音，請您留意公告。</span></p>
         <div class="vids">
           <div class="vid"><span class="lv">基礎技能｜a. 課程設計</span><span>醫事職類推動 CBME 實務</span><span class="bt"><a class="btn btn-ghost" href="https://training.chimei.org.tw/mod/CFD/1140726003/HDC_FD41_20250726_110142.mp4" target="_blank" rel="noopener"><svg class="i"><use href="#i-play"/></svg>看影片</a><a class="btn btn-primary" href="https://reurl.cc/909vQx" target="_blank" rel="noopener"><svg class="i"><use href="#i-clip"/></svg>去測驗</a></span></div>
@@ -629,12 +661,12 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
           <div class="vid"><span class="lv">進階技能｜e. 教師教學經驗分享</span><span>遊戲化教學：長照 123，分類真簡單／臨床應用遊戲教學法之經驗分享</span><span class="bt"><a class="btn btn-ghost" href="https://training.chimei.org.tw/mod/CFD/1131004005/HDC_DY2A_20241004_130023.mp4" target="_blank" rel="noopener"><svg class="i"><use href="#i-play"/></svg>看影片</a><a class="btn btn-primary" href="https://reurl.cc/4YMr82" target="_blank" rel="noopener"><svg class="i"><use href="#i-clip"/></svg>去測驗</a></span></div>
         </div>
       </div>
-      <div class="card way"><h4 class="hic"><span class="ic-s" aria-hidden="true"><svg class="i"><use href="#i-pen"/></svg></span>看影音、寫心得。</h4><p>如果您用上面的方式還是不夠，可以到<a href="https://training.chimei.org.tw/asp.net/%E7%B6%B2%E8%B7%AF%E6%95%99%E5%AD%B8/login.aspx" target="_blank" rel="noopener">影音教學平台</a>的「CFD」類別看影片，再下載「CFD 教師培育訓練課程心得報告」Word 表單，填寫心得（300 字以上）後回傳教師培育中心，取得學分。心得學分有上限：每一類不超過該類應修時數的 2/3，每一類至少 1 小時要現場取得（今年看影音通過測驗也算現場）。</p></div>
-      <div class="card way"><h4 class="hic"><span class="ic-s" aria-hidden="true"><svg class="i"><use href="#i-users"/></svg></span>加開基礎技能實體課程。</h4><p>基礎技能是最多老師不夠的一類，教師培育中心年底前會加開實體場次，請您留意課程公告。</p></div>
-      <div class="card way"><h4 class="hic"><span class="ic-s" aria-hidden="true"><svg class="i"><use href="#i-building"/></svg></span>院外課程可以抵免。</h4><p>您在可採計期間內參加<a href="https://www.jct.org.tw/cp-177-2838-d27dc-1.html" target="_blank" rel="noopener">醫策會師資培育制度認證查核通過之學會、全國聯合會</a>辦理的課程，可以向教師培育中心提出抵免各類學分。您想查自己上過哪些院外課程：護理人員及助產人員請至「<a href="https://nurse.mohw.gov.tw/sp-memb-stat-2.html" target="_blank" rel="noopener">護助e起來</a>」平台查詢，醫師及其他醫事人員（如藥師、醫事檢驗師等）請登入「<a href="https://cec.mohw.gov.tw/" target="_blank" rel="noopener">繼續教育積分系統</a>」查詢。</p></div>
-      <div class="card way"><h4 class="hic"><span class="ic-s" aria-hidden="true"><svg class="i"><use href="#i-cal-plus"/></svg></span>單位自行開課。</h4><p>教師培育中心鼓勵各單位自行開課，開課單位的課程名稱請務必對應新分類的課程項目，教師培育中心才能順利認列學分。<a class="link-arrow" href="#ref">看各項目的參考範圍 →</a></p></div>
+      <div class="card way"><h4 class="hic"><span class="ic-s" aria-hidden="true"><svg class="i"><use href="#i-pen"/></svg></span>看影音、寫心得</h4><p>如果您用上面的方式還是不夠，可以到<a href="https://training.chimei.org.tw/asp.net/%E7%B6%B2%E8%B7%AF%E6%95%99%E5%AD%B8/login.aspx" target="_blank" rel="noopener">影音教學平台</a>的「CFD」類別看影片，再下載<button type="button" class="linkbtn" data-dl="form">「CFD 教師培育訓練課程心得報告」Word 表單</button>，填寫心得（300 字以上）後回傳教師培育中心，取得學分。<span class="v-ms">心得學分有上限：首次認證通識最多 1 小時、基礎及進階技能各最多 2 小時；銜接期展延每一類不超過該類應修時數的 2/3，每一類至少 1 小時要現場取得（今年看影音通過測驗也算現場）；換新制後展延每 12 個月通識最多 1 小時、進階技能最多 2 小時，基礎技能不可用影音。</span><span class="v-att">影音學分有上限：首次認證每類最多 2 小時；展延每 12 個月通識最多 1 小時、進階技能最多 2 小時，基礎技能不可用影音。</span><span class="v-res">影音學分有上限：R1–R2 與 R3 以上，通識、基礎及進階技能每類最多 2 小時。</span></p></div>
+      <div class="card way"><h4 class="hic"><span class="ic-s" aria-hidden="true"><svg class="i"><use href="#i-users"/></svg></span>加開基礎技能實體課程</h4><p>基礎技能是最多老師不夠的一類，教師培育中心年底前會加開實體場次，請您留意課程公告。</p></div>
+      <div class="card way"><h4 class="hic"><span class="ic-s" aria-hidden="true"><svg class="i"><use href="#i-building"/></svg></span>院外課程可以抵免</h4><p>您在可追溯期間內參加<a href="https://www.jct.org.tw/cp-177-2838-d27dc-1.html" target="_blank" rel="noopener">醫策會師資培育制度認證查核通過之學會、全國聯合會</a>辦理的課程，可以向教師培育中心提出抵免各類學分。您想查自己上過哪些院外課程：護理人員及助產人員請至「<a href="https://nurse.mohw.gov.tw/sp-memb-stat-2.html" target="_blank" rel="noopener">護助e起來</a>」平台查詢，醫師及其他醫事人員（如藥師、醫事檢驗師等）請登入「<a href="https://cec.mohw.gov.tw/" target="_blank" rel="noopener">繼續教育積分系統</a>」查詢。</p></div>
+      <div class="card way"><h4 class="hic"><span class="ic-s" aria-hidden="true"><svg class="i"><use href="#i-cal-plus"/></svg></span>單位自行開課</h4><p>教師培育中心鼓勵各單位自行開課，開課單位的課程名稱請務必對應新分類的課程項目，教師培育中心才能順利認列學分。開課單位請至<a href="https://pse.is/9qsh9k" target="_blank" rel="noopener">CFD 積分申請管理系統</a>申請積分。<a class="link-arrow" href="#ref">看各項目的參考範圍 →</a></p></div>
     </div>
-    <p class="caption" style="margin-top:24px">※ 118 年 1 月 1 日起銜接期結束，教師培育中心審查展延一律依新制年度標準。各單位晉升、考核辦法中引用臨床教師資格的部分，也會配合修訂。<br>※ 銜接期規定依 115 年 9 月 21 日教師培育中心會議決議。</p>
+    <p class="caption" style="margin-top:24px">※ 銜接期到 118 年 12 月 31 日結束，119 年起教師培育中心審查展延一律依新制年度標準。各單位晉升、考核辦法中引用臨床教師資格的部分，也會配合修訂。<br>※ 銜接期規定依 115 年 9 月 21 日教師培育中心會議決議。</p>
   </div>
 </section>
 
@@ -642,35 +674,35 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
 <section id="calc" data-nav="應修學分：首次認證" data-short="首次認證">
   <div class="wrap">
     <div class="sec-tag"><span class="no">05</span>應修學分</div>
-    <div class="sec-head"><h2>我要修滿哪些學分？</h2><p>下面依首次認證、展延認證分別列出您要達到的時數，以及各送件年度的採計期間。</p></div>
+    <div class="role-pick in-sec" role="radiogroup" aria-label="選擇您的身分"><button type="button" role="radio" data-r="ms">醫事人員</button><button type="button" role="radio" data-r="att">主治醫師</button><button type="button" role="radio" data-r="res">住院醫師</button></div>
+    <div class="sec-head"><h2>我要修滿哪些學分？</h2><p>下面依首次認證、展延認證分別列出您要達到的時數，以及各送件年度的追溯期間。</p></div>
 
     <div class="res">
-      <div class="res-top"><div class="cat">首次認證</div><h4>追溯 24 個月，共 12 小時</h4></div>
+      <div class="res-top"><div class="cat">首次認證</div><h4>追溯 24 個月，共 <span class="v-ms">12</span><span class="v-att">16</span><span class="v-res">10</span> 小時</h4></div>
       <div class="res-body">
-        <div><div class="blk-t">這 24 個月內，三個層級各自修滿</div><div style="height:8px"></div><div class="hours n3"><div class="hb"><div class="v">2</div><div class="u">小時</div><div class="nm">通識</div></div><div class="hb"><div class="v">6</div><div class="u">小時</div><div class="nm">基礎技能</div></div><div class="hb"><div class="v">4</div><div class="u">小時</div><div class="nm">進階技能</div></div></div></div>
-        <div class="warn"><b>基礎技能的 6 小時，必須至少涵蓋兩個子項</b><br>子項有四種：課程設計、教學技巧、評估技巧、教材製作。您 6 小時全部集中在同一個子項，系統會判定為未達標。</div>
-        <div><div class="blk-t" style="margin-bottom:8px">各送件年度的採計期間</div><div class="tbl-wrap cardify" style="margin-top:4px"><table class="tbl-card"><thead><tr><th>送件年度</th><th>採計期間</th><th>送件時間</th></tr></thead><tbody><tr><td data-l="送件年度"><b>115 年</b></td><td data-l="採計期間">114/1/1–115/12/31</td><td data-l="送件時間"><span class="send-note">教師培育中心 11 月初通知送件，學分算到 115/12/31</span></td></tr><tr><td data-l="送件年度"><b>116 年</b></td><td data-l="採計期間">114/11/1–116/10/31</td><td data-l="送件時間">116 年 10/1–10/31 送件，10/31 結算</td></tr><tr><td data-l="送件年度"><b>117 年</b></td><td data-l="採計期間">115/11/1–117/10/31</td><td data-l="送件時間">117 年 10/1–10/31 送件，10/31 結算</td></tr><tr><td data-l="送件年度"><b>118 年以後</b></td><td data-l="採計期間">前兩年 11/1 至當年 10/31</td><td data-l="送件時間">每年 10/1–10/31 送件，10/31 結算</td></tr></tbody></table></div></div>
-        <div class="info">影音怎麼算：您今年看教師培育中心影音並通過測驗，視同現場學分。其他影音課程：若現場課程不足，可於影音教學平台觀看「教學及 CFD」類別之影音課程，通識可採計 1 小時、基礎及進階技能課程至多可各採計 2 小時影音課程，觀看後須繳交學習心得（300 字以上），以此補足時數。</div>
-        <p>您通過後，教師培育中心核發一年效期（隔年 1/1–12/31），之後您每年 10 月送展延。您的三個層級要各自修滿，不能互相抵充。</p>
+        <div><div class="blk-t">這 24 個月內，三個層級各自修滿<span class="v-ms"></span><span class="v-att">，另主講科部內外教學 4 小時</span><span class="v-res"></span></div><div style="height:8px"></div><div class="v-ms"><div class="hours n3"><div class="hb"><div class="v">2</div><div class="u">小時</div><div class="nm">通識</div></div><div class="hb"><div class="v">6</div><div class="u">小時</div><div class="nm">基礎技能</div></div><div class="hb"><div class="v">4</div><div class="u">小時</div><div class="nm">進階技能</div></div></div></div><div class="v-att"><div class="hours "><div class="hb"><div class="v">2</div><div class="u">小時</div><div class="nm">通識</div></div><div class="hb"><div class="v">6</div><div class="u">小時</div><div class="nm">基礎技能</div></div><div class="hb"><div class="v">4</div><div class="u">小時</div><div class="nm">進階技能</div></div><div class="hb"><div class="v">4</div><div class="u">小時</div><div class="nm">主講科部內外教學</div></div></div></div><div class="v-res"><div class="hours n3"><div class="hb"><div class="v">2</div><div class="u">小時</div><div class="nm">通識</div></div><div class="hb"><div class="v">5</div><div class="u">小時</div><div class="nm">基礎技能</div></div><div class="hb"><div class="v">3</div><div class="u">小時</div><div class="nm">進階技能</div></div></div></div></div>
+        <div class="warn"><b>首次認證基礎技能的 <span class="v-ms">6</span><span class="v-att">6</span><span class="v-res">5</span> 小時，必須至少涵蓋兩個子項</b><br>子項有四種：課程設計、教學技巧、評估技巧、教材製作。您 <span class="v-ms">6</span><span class="v-att">6</span><span class="v-res">5</span> 小時全部集中在同一個子項，系統會判定為未達標。</div>
+        <div><div class="blk-t" style="margin-bottom:8px">各送件年度的追溯期間</div><div class="tbl-wrap cardify" style="margin-top:4px"><table class="tbl-card"><thead><tr><th>送件年度</th><th>追溯期間</th><th>送件時間</th></tr></thead><tbody><tr><td data-l="送件年度"><b>115 年</b></td><td data-l="追溯期間">114/1/1–115/12/31</td><td data-l="送件時間"><span class="send-note">教師培育中心 11 月初通知送件，學分算到 115/12/31</span></td></tr><tr><td data-l="送件年度"><b>116 年起</b></td><td data-l="追溯期間">前兩年 11/1 至當年 10/31<br><span class="muted" style="font-size:14px">例：116 年採計 114/11/1–116/10/31</span></td><td data-l="送件時間">每年 10/1–10/31 送件，10/31 結算</td></tr></tbody></table></div></div>
+        <div class="info">影音怎麼算：<span class="v-ms">您今年看教師培育中心影音並通過測驗，視同現場學分。其他影音課程：若現場課程不足，可於影音教學平台觀看「教學及 CFD」類別之影音課程，通識可採計 1 小時、基礎及進階技能課程至多可各採計 2 小時影音課程，觀看後須繳交學習心得（300 字以上），以此補足時數。</span><span class="v-att">若現場課程不足，可觀看「教學及 CFD」類別影音課程，通識、基礎及進階技能至多可各採計 2 小時。今年影音通過測驗視同現場學分是否適用醫師，教師培育中心另行公告。</span><span class="v-res">若現場課程不足，可觀看「教學及 CFD」類別影音課程，通識、基礎及進階技能至多可各採計 2 小時。今年影音通過測驗視同現場學分是否適用醫師，教師培育中心另行公告。</span></div>
+        <p>您通過後，教師培育中心核發一年效期（隔年 1/1–12/31），之後您每年 10 月送展延。您的三個層級要各自修滿，不能互相抵充。</p><p class="v-res caption">R1–R2 證書到期後，接續申請 R3 以上認證（展延）。升任總醫師（CR）需具備住院醫師臨床教師資格，R1–R2 的資歷可累積至 R3。</p>
       </div>
-    </div>
-
-  </div>
+    </div>  </div>
 </section>
 
 <!-- 5-2. 應修學分：展延認證 -->
 <section id="calc2" data-nav="應修學分：銜接期展延" data-short="銜接期展延">
   <div class="wrap">
     <div class="sec-tag"><span class="no">05</span>應修學分</div>
+    <div class="role-pick in-sec" role="radiogroup" aria-label="選擇您的身分"><button type="button" role="radio" data-r="ms">醫事人員</button><button type="button" role="radio" data-r="att">主治醫師</button><button type="button" role="radio" data-r="res">住院醫師</button></div>
     <div class="res">
-      <div class="res-top"><div class="cat">展延認證｜舊制證書 115–117 年到期</div><h4>銜接期：兩種標準擇一</h4></div>
+      <div class="res-top"><div class="cat">展延認證｜舊制證書 118/7/31 以前到期</div><h4>銜接期：兩種標準擇一</h4></div>
       <div class="res-body">
-        <div><div class="blk-t">標準一｜舊制累計：36 個月內累計</div><div class="blk-sub">不必每年達標</div><div style="height:8px"></div><div class="hours"><div class="hb"><div class="v">3</div><div class="u">小時</div><div class="nm">通識</div></div><div class="hb"><div class="v">3</div><div class="u">小時</div><div class="nm">基礎技能</div></div><div class="hb"><div class="v">9</div><div class="u">小時</div><div class="nm">進階技能</div></div><div class="hb"><div class="v">3</div><div class="u">小時</div><div class="nm">主講教學</div></div></div></div>
+        <div class="v-ms"><div><div class="blk-t">標準一｜舊制累計：36 個月內累計<span class="blk-sub">不必每年達標</span></div><div style="height:8px"></div><div class="hours"><div class="hb"><div class="v">3</div><div class="u">小時</div><div class="nm">通識</div></div><div class="hb"><div class="v">3</div><div class="u">小時</div><div class="nm">基礎技能</div></div><div class="hb"><div class="v">9</div><div class="u">小時</div><div class="nm">進階技能</div></div><div class="hb"><div class="v">3</div><div class="u">小時</div><div class="nm">主講科部內外教學</div></div></div></div></div><div class="v-att"><div class="blk-t">標準一｜舊制：36 個月內每 12 個月都達標<span class="blk-sub">主講科部內外教學另計：36 個月內共 5 小時</span></div><div style="height:8px"></div><div class="hours n3"><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">通識</div></div><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">基礎技能</div></div><div class="hb"><div class="v">3</div><div class="u">小時</div><div class="nm">進階技能</div></div></div></div><div class="v-res"><div class="blk-t">標準一｜舊制：36 個月內每 12 個月都達標<span class="blk-sub">主講科部內外教學另計：36 個月內共 3 小時</span></div><div style="height:8px"></div><div class="hours n3"><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">通識</div></div><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">基礎技能</div></div><div class="hb"><div class="v">2</div><div class="u">小時</div><div class="nm">進階技能</div></div></div></div>
         <div class="or-line">或</div>
-        <div><div class="blk-t">標準二｜新制年度：過去 12 個月共 6 小時</div><div style="height:8px"></div><div class="hours"><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">通識</div></div><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">基礎技能</div></div><div class="hb"><div class="v">3</div><div class="u">小時</div><div class="nm">進階技能</div></div><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">主講教學</div></div></div></div>
-        <div><div class="blk-t" style="margin-bottom:8px">標準二各送件年度的採計期間</div><div class="tbl-wrap cardify" style="margin-top:4px"><table class="tbl-card"><thead><tr><th>送件年度</th><th>採計期間</th><th>送件時間</th></tr></thead><tbody><tr><td data-l="送件年度"><b>115 年</b></td><td data-l="採計期間">115/1/1–115/12/31</td><td data-l="送件時間"><span class="send-note">證書 115/12/31 到期的老師：教師培育中心 11 月初通知送件，學分算到 115/12/31</span></td></tr><tr><td data-l="送件年度"><b>116 年</b></td><td data-l="採計期間">115/11/1–116/10/31</td><td data-l="送件時間">116 年 10/1–10/31 送件，10/31 結算</td></tr><tr><td data-l="送件年度"><b>117 年</b></td><td data-l="採計期間">116/11/1–117/10/31</td><td data-l="送件時間">117 年 10/1–10/31 送件，10/31 結算</td></tr></tbody></table></div></div>
-        <div class="info">影音怎麼算：您今年看教師培育中心影音並通過測驗，視同現場學分；您寫心得（300 字以上）的學分每一類不超過 2/3，每一類至少 1 小時要現場取得。</div>
-        <p>您符合任一種就能通過，通過後教師培育中心核發新制一年效期，之後您每年 10 月再送，一律看標準二。兩種標準擇一只適用您舊制證書到期的那一次展延。118 年起銜接期結束，教師培育中心只看標準二。</p>
+        <div class="v-ms"><div><div class="blk-t">標準二｜新制年度：過去 12 個月共 6 小時</div><div style="height:8px"></div><div class="hours"><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">通識</div></div><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">基礎技能</div></div><div class="hb"><div class="v">3</div><div class="u">小時</div><div class="nm">進階技能</div></div><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">主講科部內外教學</div></div></div></div></div><div class="v-att"><div class="blk-t">標準二｜新制年度：過去 12 個月</div><div style="height:8px"></div><div class="hours n4"><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">通識</div></div><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">基礎技能</div></div><div class="hb"><div class="v">3</div><div class="u">小時</div><div class="nm">進階技能</div></div><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">主講科部內外教學</div></div></div></div><div class="v-res"><div class="blk-t">標準二｜新制年度：過去 12 個月</div><div style="height:8px"></div><div class="hours n4"><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">通識</div></div><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">基礎技能</div></div><div class="hb"><div class="v">2</div><div class="u">小時</div><div class="nm">進階技能</div></div><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">主講科部內外教學</div></div></div></div>
+        <div><div class="blk-t" style="margin-bottom:8px">標準二各送件年度的追溯期間</div><div class="tbl-wrap cardify" style="margin-top:4px"><table class="tbl-card"><thead><tr><th>送件年度</th><th>追溯期間</th><th>送件時間</th></tr></thead><tbody><tr><td data-l="送件年度"><b>115 年</b></td><td data-l="追溯期間">115/1/1–115/12/31</td><td data-l="送件時間"><span class="send-note">證書 115/12/31 到期的老師：教師培育中心 11 月初通知送件，學分算到 115/12/31</span></td></tr><tr><td data-l="送件年度"><b>116、117 年</b></td><td data-l="追溯期間">前一年 11/1 至當年 10/31<br><span class="muted" style="font-size:14px">例：116 年採計 115/11/1–116/10/31</span></td><td data-l="送件時間">每年 10/1–10/31 送件，10/31 結算</td></tr></tbody></table></div></div>
+        <div class="info">影音怎麼算：<span class="v-ms">您今年看教師培育中心影音並通過測驗，視同現場學分；您寫心得（300 字以上）的學分每一類不超過 2/3，每一類至少 1 小時要現場取得。</span><span class="v-att">每 12 個月通識至多採計 1 小時、進階技能至多採計 2 小時影音課程，基礎技能不可用影音。今年影音通過測驗視同現場學分是否適用醫師，教師培育中心另行公告。</span><span class="v-res">通識、基礎及進階技能每類至多採計 2 小時影音課程。今年影音通過測驗視同現場學分是否適用醫師，教師培育中心另行公告。</span></div>
+        <p>您符合任一種就能通過，通過後教師培育中心核發新制一年效期，之後您每年 10 月再送，一律看標準二。兩種標準擇一只適用您舊制證書到期的那一次展延。銜接期到 118 年底結束，119 年起教師培育中心只看標準二。</p>
         <div class="warn"><b>兩種標準不能混著算</b><br>例如您通識照舊制、進階照新制，這樣不算達標。</div>
       </div>
     </div>
@@ -679,14 +711,15 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
 </section>
 
 <!-- 5-3. 應修學分：118 年以後展延 -->
-<section id="calc3" data-nav="應修學分：118 年以後展延" data-short="118 年以後">
+<section id="calc3" data-nav="應修學分：新制展延" data-short="新制展延">
   <div class="wrap">
     <div class="sec-tag"><span class="no">05</span>應修學分</div>
+    <div class="role-pick in-sec" role="radiogroup" aria-label="選擇您的身分"><button type="button" role="radio" data-r="ms">醫事人員</button><button type="button" role="radio" data-r="att">主治醫師</button><button type="button" role="radio" data-r="res">住院醫師</button></div>
     <div class="res">
-      <div class="res-top"><div class="cat">展延認證｜118 年以後送件</div><h4>過去 12 個月共 6 小時</h4><div class="send">每年 10/1–10/31 送件，10/31 結算</div></div>
+      <div class="res-top"><div class="cat">展延認證｜換成新制一年效期後</div><h4><span class="v-ms">過去 12 個月共 6 小時</span><span class="v-att">過去 12 個月共 6 小時</span><span class="v-res">過去 12 個月共 5 小時</span></h4><div class="send">每年 10/1–10/31 送件，10/31 結算</div></div>
       <div class="res-body">
-        <div><div class="blk-t">這 12 個月內，四項各自修滿</div><div class="blk-sub">採計前一年 11/1 至當年 10/31，影音：通識≤1、進階≤2（須繳交 300 字以上心得）</div><div style="height:8px"></div><div class="hours"><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">通識</div></div><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">基礎技能</div><div class="x">不可影音</div></div><div class="hb"><div class="v">3</div><div class="u">小時</div><div class="nm">進階技能</div></div><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">主講教學</div></div></div></div>
-        <div class="warn"><b>每一項都要各自達標，不能互相補</b><br>您進階技能修了 9 小時，多出來的也不能拿去抵基礎技能。您基礎技能這 1 小時一定要是實體或同步課程。</div>
+        <div class="v-ms"><div><div class="blk-t">這 12 個月內，四項各自修滿<span class="blk-sub">採計前一年 11/1 至當年 10/31，影音：通識≤1、進階≤2（須繳交 300 字以上心得）</span></div><div style="height:8px"></div><div class="hours"><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">通識</div></div><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">基礎技能</div><div class="x">不可影音</div></div><div class="hb"><div class="v">3</div><div class="u">小時</div><div class="nm">進階技能</div></div><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">主講科部內外教學</div></div></div></div></div><div class="v-att"><div class="blk-t">這 12 個月內，四項各自修滿<span class="blk-sub">採計前一年 11/1 至當年 10/31，影音：通識≤1、進階≤2</span></div><div style="height:8px"></div><div class="hours n4"><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">通識</div></div><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">基礎技能</div><div class="x">不可影音</div></div><div class="hb"><div class="v">3</div><div class="u">小時</div><div class="nm">進階技能</div></div><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">主講科部內外教學</div></div></div></div><div class="v-res"><div class="blk-t">這 12 個月內，四項各自修滿<span class="blk-sub">採計前一年 11/1 至當年 10/31，影音：每類≤2</span></div><div style="height:8px"></div><div class="hours n4"><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">通識</div></div><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">基礎技能</div></div><div class="hb"><div class="v">2</div><div class="u">小時</div><div class="nm">進階技能</div></div><div class="hb"><div class="v">1</div><div class="u">小時</div><div class="nm">主講科部內外教學</div></div></div></div>
+        <div class="warn"><b>每一項都要各自達標，不能互相補</b><br>您進階技能修了 9 小時，多出來的也不能拿去抵基礎技能。<span class="v-msatt">您基礎技能這 1 小時一定要是實體或同步課程。</span></div>
       </div>
     </div>
 
@@ -712,19 +745,21 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
   </div>
 </section>
 
+
+
 <!-- 6. 常見誤解 -->
 <section id="myth" data-nav="常見誤解" data-short="常見誤解">
   <div class="wrap">
     <div class="sec-tag"><span class="no">06</span>常見誤解</div>
-    <div class="sec-head"><h2>這七句話，您中了幾句？</h2><p>請點一下看答案。這些都是老師最容易搞錯的地方。</p></div>
+    <div class="sec-head"><h2>老師最常搞錯的七件事</h2><p>請點一下看答案。</p></div>
     <div class="grid g2" id="myths">
-      <div class="card myth"><button aria-expanded="false"><span class="q">「新制一上路，我手上的證書就只剩一年了。」</span><span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></button><div class="a" hidden><p><span class="lead-in">不會。</span>您原本的效期照舊，您到期展延那一次通過後，教師培育中心才換發一年效期。</p></div></div>
-      <div class="card myth"><button aria-expanded="false"><span class="q">「今年送展延，每年都要修滿 6 小時才會過。」</span><span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></button><div class="a" hidden><p><span class="lead-in">舊制證書到期換新制的那一次不一定。</span>銜接期內，您舊制證書到期的那一次展延，符合<b>舊制 36 個月累計</b>或<b>新制 12 個月 6 小時</b>其中一種就能通過。換成新制一年效期後，您每年展延都要符合新制。118 年起，教師培育中心一律看新制。</p></div></div>
-      <div class="card myth"><button aria-expanded="false"><span class="q">「我今年用舊制 36 個月累計通過展延，明年再送也可以照舊制算。」</span><span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></button><div class="a" hidden><p><span class="lead-in">不行。</span>舊制累計只能用在您舊制證書到期、換成新制的那一次展延。您通過後拿到新制一年效期，之後每年 10 月送展延，都要符合<b>新制年度標準</b>：過去 12 個月修滿通識 1、基礎技能 1、進階技能 3，並主講 1 小時。例如：您今年證書 115/12/31 到期並通過展延，116 年 10 月再送展延時，系統採計 115/11/1–116/10/31 的學分，您 114、115 年多修的學分不能再用舊制累計。</p></div></div>
-      <div class="card myth"><button aria-expanded="false"><span class="q">「10 月太忙沒送，過幾個月再補送就好。」</span><span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></button><div class="a" hidden><p><span class="lead-in">不行。</span>您沒在申請期間提出展延，您的資格會在 <b>12 月 31 日失效</b>，之後您要重新申請首次認證。申請期間：116 年起是每年 10/1–10/31；今年由教師培育中心 11 月初另行通知。留職停薪、育嬰假、長期病假的老師另有辦法，見「<a href="#special">特殊情況</a>」。</p></div></div>
-      <div class="card myth"><button aria-expanded="false"><span class="q">「基礎技能不夠，看影音補一補就好。」</span><span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></button><div class="a" hidden><p><span class="lead-in">要看是哪一種影音。</span>今年（115 年）不論展延或首次認證，您看教師培育中心開設的影音並<b>通過測驗，視同現場學分</b>，基礎技能也可以用。如果您是寫心得（300 字以上），每一類不超過 2/3，且每一類至少 1 小時要現場取得。118 年起依新制，您展延的基礎技能不能用影音補。</p></div></div>
-      <div class="card myth"><button aria-expanded="false"><span class="q">「基礎技能修滿 6 小時就可以了吧？」</span><span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></button><div class="a" hidden><p><span class="lead-in">首次認證還要看子項。</span>您的基礎技能 6 小時必須至少涵蓋 <b>a.課程設計、b.教學技巧、c.評估技巧、d.教材製作</b> 其中<b>兩個不同子項</b>。您全部集中在同一個子項，系統會判定為未達標。（展延沒有這個限制。）</p></div></div>
-      <div class="card myth"><button aria-expanded="false"><span class="q">「主講時數跟上課學分是分開算的。」</span><span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></button><div class="a" hidden><p><span class="lead-in">新制算在一起。</span>您新制展延的 6 小時裡，<b>就包含主講科部內外教學活動 1 小時</b>，教師培育中心不再另外要求 3 小時。您走舊制累計的話，才是主講 3 小時另計。</p></div></div>
+      <div class="card myth"><button aria-expanded="false"><span class="q">「新制一上路，我手上的證書就只剩一年了。」</span><span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></button><div class="a" hidden><p><span class="lead-in">不會，</span>您原本的效期照舊，您到期展延那一次通過後，教師培育中心才換發一年效期。</p></div></div>
+      <div class="card myth"><button aria-expanded="false"><span class="q">「今年送展延，每年都要修滿 6 小時才會過。」</span><span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></button><div class="a" hidden><p><span class="lead-in">舊制證書到期換新制的那一次不一定：</span>銜接期內，您舊制證書到期的那一次展延，符合<b><span class="v-ms">舊制 36 個月累計</span><span class="v-att">舊制 36 個月規定</span><span class="v-res">舊制 36 個月規定</span></b>或<b><span class="v-ms">新制 12 個月 6 小時</span><span class="v-att">新制 12 個月 6 小時</span><span class="v-res">新制 12 個月 5 小時</span></b>其中一種就能通過。換成新制一年效期後，您每年展延都要符合新制，119 年起教師培育中心一律看新制。</p></div></div>
+      <div class="card myth"><button aria-expanded="false"><span class="q">「我今年用舊制 36 個月累計通過展延，明年再送也可以照舊制算。」</span><span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></button><div class="a" hidden><p><span class="lead-in">不行，</span>舊制累計只能用在您舊制證書到期、換成新制的那一次展延。您通過後拿到新制一年效期，之後每年 10 月送展延，都要符合<b>新制年度標準</b>：過去 12 個月修滿<span class="v-ms">通識 1、基礎技能 1、進階技能 3，並主講科部內外教學 1 小時</span><span class="v-att">通識 1、基礎技能 1、進階技能 3，並主講科部內外教學 1 小時</span><span class="v-res">通識 1、基礎技能 1、進階技能 2，並主講科部內外教學 1 小時</span>。例如：您今年證書 115/12/31 到期並通過展延，116 年 10 月再送展延時，系統採計 115/11/1–116/10/31 的學分，您 114、115 年多修的學分不能再用舊制累計。</p></div></div>
+      <div class="card myth"><button aria-expanded="false"><span class="q">「10 月太忙沒送，過幾個月再補送就好。」</span><span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></button><div class="a" hidden><p><span class="lead-in">不行，</span>您沒在申請期間提出展延，您的資格會在 <b>12 月 31 日失效</b>，之後您要重新申請首次認證。申請期間：116 年起是每年 10/1–10/31；今年由教師培育中心 11 月初另行通知。留職停薪、育嬰假、長期病假的老師另有辦法，見「<a href="#special">特殊情況</a>」。</p></div></div>
+      <div class="card myth"><button aria-expanded="false"><span class="q">「基礎技能不夠，看影音補一補就好。」</span><span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></button><div class="a" hidden><p class="v-ms"><span class="lead-in">要看是哪一種影音：</span>今年（115 年）不論展延或首次認證，您看教師培育中心開設的影音並<b>通過測驗，視同現場學分</b>，基礎技能也可以用。如果您是寫心得（300 字以上），首次認證的基礎技能最多可採計 2 小時；銜接期展延每一類不超過 2/3，且每一類至少 1 小時要現場取得。換成新制一年效期後，您展延的基礎技能不能用影音補。</p><p class="v-att"><span class="lead-in">首次可以，展延不行：</span>您首次認證的基礎技能最多可用 2 小時影音補足；展延時每 12 個月的基礎技能<b>不能用影音補</b>，要上實體或同步課程。今年影音通過測驗視同現場學分是否適用醫師，教師培育中心另行公告。</p><p class="v-res"><span class="lead-in">可以，但有上限：</span>R1–R2 與 R3 以上，基礎技能最多可用 2 小時影音補足，其餘要上實體或同步課程。今年影音通過測驗視同現場學分是否適用醫師，教師培育中心另行公告。</p><p style="margin-top:8px"><a class="link-arrow" style="white-space:normal" href="#ways">學分不夠還有其他管道：看五種取得學分的方式 →</a></p></div></div>
+      <div class="card myth"><button aria-expanded="false"><span class="q">「首次認證基礎技能修滿 <span class="v-ms">6</span><span class="v-att">6</span><span class="v-res">5</span> 小時就可以了吧？」</span><span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></button><div class="a" hidden><p><span class="lead-in">首次認證還要看子項：</span>您的基礎技能 <span class="v-ms">6</span><span class="v-att">6</span><span class="v-res">5</span> 小時必須至少涵蓋 <b>a.課程設計、b.教學技巧、c.評估技巧、d.教材製作</b> 其中<b>兩個不同子項</b>。您全部集中在同一個子項，系統會判定為未達標（展延沒有這個限制）。</p></div></div>
+      <div class="card myth"><button aria-expanded="false"><span class="q">「主講科部內外教學時數跟上課學分是分開算的。」</span><span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></button><div class="a" hidden><p class="v-ms"><span class="lead-in">新制算在一起：</span>您新制展延的 6 小時裡，<b>就包含主講科部內外教學活動 1 小時</b>，教師培育中心不再另外要求 3 小時。您走舊制累計的話，才是主講科部內外教學 3 小時另計。</p><p class="v-att"><span class="lead-in">新制算在一起：</span>您新制展延每 12 個月的 6 小時裡，<b>就包含主講科部內外教學活動 1 小時</b>。您銜接期走舊制的話，才是 36 個月內主講科部內外教學 5 小時另計。首次認證的主講科部內外教學 4 小時，則算在 16 小時內。</p><p class="v-res"><span class="lead-in">新制算在一起：</span>R3 以上新制展延每 12 個月的 5 小時裡，<b>就包含主講科部內外教學活動 1 小時</b>。銜接期走舊制的話，才是 36 個月內主講科部內外教學 3 小時另計。R1–R2 認證不需要主講科部內外教學。</p></div></div>
     </div>
   </div>
 </section>
@@ -749,7 +784,7 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
     <p style="margin-top:12px"><a class="link-arrow" href="#ref">看各項目的參考範圍 →</a></p>
     <h3 class="sub-head">基礎技能有四個子項，首次認證要修到其中兩項</h3>
     <div class="chips" style="margin-bottom:12px"><span class="chip new">a.課程設計</span><span class="chip new">b.教學技巧</span><span class="chip new">c.評估技巧</span><span class="chip new">d.教材製作</span></div>
-    <p class="prose"><a class="link-arrow" href="#ref">看各項目的參考範圍 →</a> 您首次認證的 6 小時，必須至少涵蓋其中<b>兩個不同子項</b>，您全部集中在一個子項，系統會判定為未達標。展延沒有這個限制。</p>
+    <p class="prose">您首次認證的 6 小時，必須至少涵蓋其中<b>兩個不同子項</b>，您全部集中在一個子項，系統會判定為未達標。展延沒有這個限制。</p>
     <p class="prose" style="margin-top:12px">通識（六大核心、醫倫法律）與進階技能（五個項目）都沒有子項限制，該層級內不限哪個項目，您合計達標即可。</p>
   </div>
 </section>
@@ -758,16 +793,14 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
 <section id="rules" data-nav="認列方式" data-short="認列方式">
   <div class="wrap">
     <div class="sec-tag"><span class="no">08</span>認列方式</div>
-    <h2 class="sec-head">這六件事要先知道</h2>
+    <div class="sec-head"><h2>這四件事要先知道</h2></div>
     <ul class="ilist">
-      <li class="card"><span class="ic"><svg class="i"><use href="#i-layers"/></svg></span><div><h4>一堂課只認一個分類。</h4><p>過去同一堂課可以同時掛兩類學分，新制取消，教師培育中心依課程主題歸入最相符的一類。</p></div></li>
-      <li class="card"><span class="ic"><svg class="i"><use href="#i-video"/></svg></span><div><h4>影音課程的採計方式。</h4><p>今年（115 年）不論展延或首次認證，您看教師培育中心開設的影音並通過測驗，視同現場學分。其他影音課程依下列規定：</p>
+      <li class="card"><span class="ic"><svg class="i"><use href="#i-layers"/></svg></span><div><h4>一堂課只認一個分類</h4><p>過去同一堂課可以同時掛兩類學分，新制取消，教師培育中心依課程主題歸入最相符的一類。</p></div></li>
+      <li class="card"><span class="ic"><svg class="i"><use href="#i-video"/></svg></span><div><h4>影音課程的採計方式</h4><div class="v-ms"><p>今年（115 年）不論展延或首次認證，您看教師培育中心開設的影音並通過測驗，視同現場學分。其他影音課程依下列規定：</p>
         <div class="sub2"><div><b>首次認證</b>：若現場課程不足，可於影音教學平台觀看「教學及 CFD」類別之影音課程，通識可採計 1 小時、基礎及進階技能課程至多可各採計 2 小時影音課程，觀看後須繳交學習心得（300 字以上），以此補足時數。</div>
-        <div><b>展延認證</b>：若現場課程不足，可於影音教學平台觀看「教學及 CFD」類別之影音課程，每 12 個月通識課程至多採計 1 小時、進階技能課程至多採計 2 小時影音課程，觀看後須繳交學習心得（300 字以上），以此補足時數。銜接期（115–117 年）您用心得（300 字以上）取得的學分，每一類不超過 2/3，每一類至少 1 小時要現場取得。</div></div></div></li>
-      <li class="card"><span class="ic"><svg class="i"><use href="#i-mic"/></svg></span><div><h4>主講時數算在 6 小時裡。</h4><p>您新制展延要有主講科部內外教學活動 1 小時，送件時請您上傳教學時數證明。</p></div></li>
-      <li class="card"><span class="ic"><svg class="i"><use href="#i-user"/></svg></span><div><h4>擔任講師依實際授課時數列計。</h4><p>您擔任「提升教師教學技能」課程的講師，依醫策會規定，可依實際授課時數列計為上課時數，只是不再加倍。</p></div></li>
-      <li class="card"><span class="ic"><svg class="i"><use href="#i-ban"/></svg></span><div><h4>純行政會議不採計。</h4><p>沒有教學內容、僅屬業務協調或報告性質的會議，教師培育中心不計入臨床教師學分。</p></div></li>
-      <li class="card"><span class="ic"><svg class="i"><use href="#i-building"/></svg></span><div><h4>院外課程仍然可以抵免。</h4><p>您上過醫策會師資培育制度認證之學會及全國聯合會認可的課程，可以抵免各類學分。</p></div></li>
+        <div><b>展延認證</b>：若現場課程不足，可於影音教學平台觀看「教學及 CFD」類別之影音課程，每 12 個月通識課程至多採計 1 小時、進階技能課程至多採計 2 小時影音課程，觀看後須繳交學習心得（300 字以上），以此補足時數。銜接期（舊制證書 118/7/31 以前到期的那一次展延）您用心得（300 字以上）取得的學分，每一類不超過 2/3，每一類至少 1 小時要現場取得。</div></div></div><div class="v-md"><p>醫師的影音課程依下列規定（今年影音通過測驗視同現場學分是否適用醫師，教師培育中心另行公告）：</p><div class="sub2"><div><b>首次認證</b>：若現場課程不足，可於影音教學平台觀看「教學及 CFD」類別之影音課程，通識、基礎及進階技能至多可各採計 2 小時。</div><div class="v-att"><b>展延認證</b>：每 12 個月通識至多採計 1 小時、進階技能至多採計 2 小時影音課程，基礎技能不可用影音。</div><div class="v-res"><b>R3 以上認證</b>：通識、基礎及進階技能至多可各採計 2 小時影音課程。</div></div></div></div></li>
+      <li class="card"><span class="ic"><svg class="i"><use href="#i-ban"/></svg></span><div><h4>純行政會議不採計</h4><p>沒有教學內容、僅屬業務協調或報告性質的會議，教師培育中心不計入臨床教師學分。</p></div></li>
+      <li class="card"><span class="ic"><svg class="i"><use href="#i-building"/></svg></span><div><h4>院外課程仍然可以抵免</h4><p>您上過醫策會師資培育制度認證之學會及全國聯合會認可的課程，可以抵免各類學分。</p></div></li>
     </ul>
   </div>
 </section>
@@ -777,7 +810,7 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
   <div class="wrap">
     <div class="sec-tag"><span class="no">09</span>年度時程</div>
     <h2 class="sec-head">一年的認證流程</h2>
-    <div class="note prose"><span class="tag-year">今年例外</span>116 年起每年都是同一套時程。今年例外：證書 115/12/31 到期要展延的老師，以及今年要申請首次認證的老師，教師培育中心會在 11 月初通知送件，學分算到 115/12/31。</div>
+    <div class="note prose"><span class="tag-year">今年例外</span>116 年起每年都是同一套時程。證書 115/12/31 到期要展延的老師，以及今年要申請首次認證的老師，教師培育中心會在 11 月初通知送件，學分算到 115/12/31。</div>
     <ol class="tl">
       <li class="tl-i"><span class="tl-dot"><i></i></span><div class="tl-c"><div class="w">7 月</div><h4>發布認證及展延公告</h4><p>教師培育中心以電子郵件寄發全院各單位，並公告於院內網站。</p></div></li>
       <li class="tl-i key"><span class="tl-dot"><i></i></span><div class="tl-c"><div class="w">10/1–10/31</div><h4>臨床教師送件</h4><p>您登入「系統主程式 \ Intranet 主選單 \ CFD 教育訓練課程出席查詢 \ 臨床教師學分」，確認達標後按「送出」。您申請展延，請另上傳教學時數證明。系統 10/31 結算，採計前一年 11/1 至當年 10/31 的學分。</p></div></li>
@@ -823,10 +856,10 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
     <div class="sec-tag"><span class="no">12</span>單位教學負責人</div>
     <h2 class="sec-head">我是單位教學負責人，要注意什麼？</h2>
     <ul class="role-list card">
-      <li><b>您每年 7 月會收到教師培育中心的認證及展延公告。</b>教師培育中心原本 3 月、8 月的學分提醒公告取消，改成 7 月一次，請您轉知單位同仁 10 月送件。</li>
-      <li><b>請您提醒今年到期的同仁留意送件通知。</b>證書 115/12/31 到期的同仁，教師培育中心預計 11 月初通知送件，學分算到 115/12/31。同仁錯過申請期，資格會在 12/31 失效，要重新走首次認證。</li>
-      <li><b>學分還不夠的同仁，請您提醒參加補課。</b>今年（115 年）同仁看完教師培育中心開設的影音課程並通過測驗，視同現場學分，請您依同仁的缺口提醒參加。</li>
-      <li><b>請您提醒首次認證的同仁留意基礎技能子項。</b>同仁需涵蓋至少兩個子項，只修單一子項，系統會判定為未達標。</li>
+      <li><b>您每年 7 月會收到教師培育中心的認證及展延公告</b>教師培育中心原本 3 月、8 月的學分提醒公告取消，改成 7 月一次，請您轉知單位同仁 10 月送件。</li>
+      <li><b>請您提醒今年到期的同仁留意送件通知</b>證書 115/12/31 到期的同仁，教師培育中心預計 11 月初通知送件，學分算到 115/12/31。同仁錯過申請期，資格會在 12/31 失效，要重新走首次認證。</li>
+      <li><b>學分還不夠的同仁，請您提醒參加補課</b>今年（115 年）同仁看完教師培育中心開設的影音課程並通過測驗，視同現場學分，請您依同仁的缺口提醒參加。</li>
+      <li><b>請您提醒首次認證的同仁留意基礎技能子項</b>同仁需涵蓋至少兩個子項，只修單一子項，系統會判定為未達標。</li>
     </ul>
   </div>
 </section>
@@ -837,11 +870,11 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
     <div class="sec-tag"><span class="no">13</span>開辦課程單位</div>
     <h2 class="sec-head">我是開辦課程的單位，要注意什麼？</h2>
     <ul class="role-list card">
-      <li><b>您送課時請依三層級規劃。</b>原本的 A–E 分類停用，您申請 CFD 學分時，請依「臨床教師課程認證類別及時數標準」規劃課程名稱和內容。<a class="link-arrow" href="#ref">看各項目的參考範圍 →</a></li>
-      <li><b>基礎技能課程要再標子項。</b>您必須指定是課程設計、教學技巧、評估技巧或教材製作，系統判定首次認證時要用到子項。</li>
-      <li><b>進階技能課程要以「教學」為主。</b>標跨領域團隊合作照護<span class="em-teach">教學</span>或全人照護<span class="em-teach">教學</span>的課，您安排的內容要談怎麼教。跨領域的課尤其要避免只是「臨床討論會」。</li>
-      <li><b>一堂課只能給一類。</b>請您選擇與課程主題最相符的那一類。</li>
-      <li><b>非常歡迎多開基礎技能課程。</b>近三年半院內基礎技能只占全部課程時數的 8.7%，新制每位老師每年都需要，您開這類課最能幫到同仁。</li>
+      <li><b>您送課時請依三層級規劃</b>原本的 A–E 分類停用，您開課時請至<a href="https://pse.is/9qsh9k" target="_blank" rel="noopener">CFD 積分申請管理系統</a>申請積分，並依「臨床教師課程認證類別及時數標準」規劃課程名稱和內容。<a class="link-arrow" href="#ref">看各項目的參考範圍 →</a></li>
+      <li><b>基礎技能課程要再標子項</b>您必須指定是課程設計、教學技巧、評估技巧或教材製作，系統判定首次認證時要用到子項。</li>
+      <li><b>進階技能課程要以「教學」為主</b>標跨領域團隊合作照護<span class="em-teach">教學</span>或全人照護<span class="em-teach">教學</span>的課，您安排的內容要談怎麼教。跨領域的課尤其要避免只是「臨床討論會」。</li>
+      <li><b>一堂課只能給一類</b>請您選擇與課程主題最相符的那一類。</li>
+      <li><b>非常歡迎多開基礎技能課程</b>近三年半院內基礎技能只占全部課程時數的 8.7%，新制展延每位老師每年都要修，您開這類課最能幫到同仁。</li>
     </ul>
     <h3 class="sub-head" id="ref">十一個課程項目的參考範圍</h3>
     <p class="prose" style="margin-bottom:16px">新舊分類的內容差蠻多的，您送課前請先對照下表確認要標哪一項。本表依程序書附件 7.1、7.2 整理。</p>
@@ -875,9 +908,9 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
     <h2 class="sec-head">離開這頁之前，先確認這四件事</h2>
     <div class="card">
       <div class="chk-prog" id="chkProg">已確認 0/4</div>
-      <div class="chk"><input type="checkbox" id="k1"><label for="k1">我知道自己的證書哪一年到期，那一年要在申請期間送件<small>116 年起是每年 10/1–10/31；今年由教師培育中心 11 月初通知。錯過申請期，資格會在 12/31 失效</small></label></div>
-      <div class="chk"><input type="checkbox" id="k2"><label for="k2">我知道舊制證書到期、換新制的那一次展延，舊制累計或新制年度符合一種就能通過<small>換成新制一年效期後，我每年 10 月送展延都看新制：過去 12 個月 6 小時</small></label></div>
-      <div class="chk"><input type="checkbox" id="k3"><label for="k3">我知道新制的 6 小時要包含主講 1 小時，三個層級各自達標<small>我進階技能修再多，也補不了基礎技能的不足</small></label></div>
+      <div class="chk"><input type="checkbox" id="k1"><label for="k1">（展延者）我知道自己的證書哪一年到期，那一年要在申請期間送件<small>116 年起是每年 10/1–10/31；今年由教師培育中心 11 月初通知。錯過申請期，資格會在 12/31 失效</small></label></div>
+      <div class="chk"><input type="checkbox" id="k2"><label for="k2">（展延者）我知道舊制證書到期、換新制的那一次展延，<span class="v-ms">舊制累計</span><span class="v-att">舊制</span><span class="v-res">舊制</span>或新制年度符合一種就能通過<small>換成新制一年效期後，我每年 10 月送展延都看新制：過去 12 個月<span class="v-ms"> 6 小時</span><span class="v-att">通識 1、基礎 1、進階 3，並主講科部內外教學 1 小時</span><span class="v-res">通識 1、基礎 1、進階 2，並主講科部內外教學 1 小時</span></small></label></div>
+      <div class="chk"><input type="checkbox" id="k3"><label for="k3">（展延者）<span class="v-msatt">我知道新制展延每年的 6 小時要包含主講科部內外教學 1 小時，各層級各自達標</span><span class="v-res">我知道新制展延每年的 5 小時要包含主講科部內外教學 1 小時，各層級各自達標</span><small>我進階技能修再多，也補不了基礎技能的不足</small></label></div>
       <div class="chk"><input type="checkbox" id="k4"><label for="k4">（首次認證者）我的基礎技能已涵蓋至少兩個子項<small>我只修單一子項，系統會判定為未達標</small></label></div>
       <p class="chk-msg" id="chkMsg">還沒開始勾，先從第一項看起吧。</p>
       <div class="note" id="chkNote" hidden style="margin-top:20px;max-width:28em">都確認了，記得在申請期間送件</div>
@@ -932,21 +965,27 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
   try{
   /* ---- 分頁閱讀：上一頁／下一頁、目錄、整頁模式 ---- */
   const hero=$('header.hero'), secs=$$('main > section[id]'), foot=$('footer');
-  const pages=secs.map(sec=>({sec,id:sec.id,title:sec.dataset.nav,short:sec.dataset.short||sec.dataset.nav,group:sec.dataset.group||''}));
-  const N=pages.length;
+  let role=document.body.dataset.role||'ms';
+  const inRole=sec=>{const rs=sec.dataset.roles;if(!rs)return true;const g=role==='ms'?'ms':'md';return rs.split(' ').some(x=>x===role||x===g);};
+  const noOf=p=>((p.sec.querySelector('.sec-tag .no')||{}).textContent||'');
+  let pages=[],N=0,navA=[];
+  const nav=$('#navlinks');
+  function buildPages(){
+    secs.forEach(x=>x.classList.toggle('role-out',!inRole(x)));
+    pages=secs.filter(inRole).map(sec=>{const t=(role!=='ms'&&sec.dataset.navMd)||sec.dataset.nav;return {sec,id:sec.id,title:t,short:sec.dataset.short||t,group:sec.dataset.group||''};});
+    N=pages.length;
+    nav.innerHTML=pages.map((p,i)=>`<a href="#${p.id}" data-i="${i}">${esc(p.short)}</a>`).join('');navA=$$('#navlinks a');
+  }
+  buildPages();
   const pageEls=i=>{const a=[pages[i].sec];if(i===0)a.push(hero);if(i===N-1)a.push(foot);return a;};
-  const pageOf=el=>{if(!el)return -1;if(hero.contains(el))return 0;if(foot.contains(el))return N-1;return pages.findIndex(p=>p.sec.contains(el));};
+  const pageOf=el=>{if(!el)return -1;if(hero.contains(el))return 0;if(foot.contains(el))return N-1;let i=pages.findIndex(p=>p.sec.contains(el));if(i<0){const sec=secs.find(x=>x.contains(el));if(sec){const no=(sec.querySelector('.sec-tag .no')||{}).textContent;i=pages.findIndex(p=>noOf(p)===no);}}return i;};
   let cur=0, paged=true;
   try{paged=localStorage.getItem('ctc_mode')!=='full';}catch(e){}
   let seen=[];try{seen=JSON.parse(localStorage.getItem('ctc_seen')||'[]');}catch(e){}
   const markSeen=id=>{if(!seen.includes(id)){seen.push(id);try{localStorage.setItem('ctc_seen',JSON.stringify(seen));}catch(e){}}};
 
-  // 上方分頁標籤
-  const nav=$('#navlinks');nav.innerHTML=pages.map((p,i)=>`<a href="#${p.id}" data-i="${i}">${esc(p.short)}</a>`).join('');
-  const navA=$$('#navlinks a');
   // 目錄
   const tocOpen=new Set();
-  const noOf=p=>((p.sec.querySelector('.sec-tag .no')||{}).textContent||'');
   function drawToc(){
     const dot=p=>seen.includes(p.id)?'<span class="seen" title="已翻閱"><span class="sr">已翻閱</span></span>':'';
     const row=(p,i,cls,label,num)=>{const on=i===cur&&paged;return `<a class="${cls}${on?' on':''}" href="#${p.id}"${on?' aria-current="page"':''}>${num!=null?`<span class="tn">${num}</span>`:''}<span class="tt">${esc(label)}</span>${dot(p)}</a>`;};
@@ -964,7 +1003,7 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
       const hasCur=bk.items.includes(cur)&&paged;const open=tocOpen.has(bk.key)||(hasCur&&!tocOpen.has('x'+bk.key));
       const head=bk.kind==='group'?`<span class="tt">${esc(bk.title)}</span><span class="tcount">${bk.items.length} 章</span>`:`<span class="tn">${bk.no}</span><span class="tt">${esc(first.title.split('：')[0])}</span><span class="tcount">${bk.items.length} 頁</span>`;
       h+=`<button type="button" class="tc tg${bk.kind==='group'?' grp':''}${hasCur&&!open?' on':''}" data-k="${bk.key}" aria-expanded="${open}">${head}<svg class="i chev"><use href="#i-chev"/></svg></button>`;
-      h+=`<div class="tsub"${open?'':' hidden'}>`+bk.items.map(i=>bk.kind==='group'?row(pages[i],i,'ts grp-i',pages[i].title,noOf(pages[i])):row(pages[i],i,'ts',pages[i].title.split('：')[1]||pages[i].title)).join('')+'</div>';
+      h+=`<div class="tsub"${open?'':' hidden'}>`+bk.items.map(i=>{return (bk.kind==='group'?row(pages[i],i,'ts grp-i',pages[i].title,noOf(pages[i])):row(pages[i],i,'ts',pages[i].title.split('：')[1]||pages[i].title));}).join('')+'</div>';
       if(bk.kind==='group')g='給單位主管與開課單位';
     });
     $('#drawerLinks').innerHTML=h;}
@@ -1017,11 +1056,30 @@ body:not(.paged) .pbar-in{grid-template-columns:1fr}
   const toTop=$('#toTop');window.addEventListener('scroll',()=>toTop.classList.toggle('show',scrollY>800),{passive:true});
   toTop.addEventListener('click',()=>window.scrollTo({top:0}));
 
+  /* ---- 身分切換 ---- */
+  const picks=$$('.role-pick');
+  function syncPicks(){picks.forEach(g=>g.querySelectorAll('button').forEach(b=>{const on=b.dataset.r===role;b.setAttribute('aria-checked',String(on));b.tabIndex=on?0:-1;}));}
+  function setRole(r){if(r===role)return;const curSec=pages[cur]&&pages[cur].sec;role=r;document.body.dataset.role=r;try{localStorage.setItem('ctc_role',r)}catch(e){}
+    buildPages();syncPicks();let i=curSec?pages.findIndex(p=>p.sec===curSec):0;if(i<0)i=Math.max(0,pageOf(curSec));
+    if(paged)show(i,null,'replace');else{cur=i;updBar();}
+    if(drawer.classList.contains('open'))drawToc();}
+  picks.forEach(g=>{const bs=[...g.querySelectorAll('button')];bs.forEach((b,k)=>{b.addEventListener('click',()=>{setRole(b.dataset.r);});
+    b.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();e.stopPropagation();const n=bs[(k+(e.key==='ArrowRight'?1:bs.length-1))%bs.length];setRole(n.dataset.r);const nb=g.querySelector(`[data-r="${n.dataset.r}"]`);if(nb)nb.focus();}});});});
+  syncPicks();
   document.body.classList.toggle('paged',paged);$('#modeSw').checked=!paged;
   if(location.hash)route(false);else{show(0,null,false);if(!paged)window.scrollTo(0,0);}
   window.addEventListener('beforeprint',()=>document.body.classList.remove('paged'));
   window.addEventListener('afterprint',()=>document.body.classList.toggle('paged',paged));
   }catch(e){console.error(e);document.body.classList.remove('paged');}
+
+  /* ---- 下載心得報告表單 ---- */
+  const FORM_B64="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";
+  (async()=>{const btns=$$('[data-dl="form"]');let dl=null;try{dl=window.claude&&window.claude.use?await window.claude.use("downloads"):null;}catch(e){}
+    btns.forEach(b=>b.addEventListener('click',async()=>{
+      if(!dl){b.insertAdjacentHTML('afterend','<span class="dl-msg">（此處無法下載，請洽教師培育中心索取表單）</span>');return;}
+      const bin=atob(FORM_B64),u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);
+      try{await dl.save({filename:'CFD教師培育訓練課程心得報告.docx',data:new Blob([u])});}catch(err){if(err&&err.code!=='declined'){const m=b.parentNode.querySelector('.dl-msg');if(!m)b.insertAdjacentHTML('afterend','<span class="dl-msg">（下載沒有成功，請洽教師培育中心索取表單）</span>');}}
+    }));})();
   /* ---- 自我檢核（勾選狀態存在本機瀏覽器） ---- */
   const MSG0='還沒開始勾，先從第一項看起吧。',MSG1='再確認剩下的幾項就好',MSG4='都確認了，記得在申請期間送件';
   const boxes=$$('#check input[type=checkbox]');
